@@ -27,17 +27,24 @@ namespace Level
 
         private void LoadCubeTile(CubeTileData levelCubeTile)
         {
-            var instantiatedObject = Instantiate(tileCubePrefab, levelCubeTile.Position, Quaternion.identity);
+            var instantiatedObject = Instantiate(tileCubePrefab,
+                CalcTilePosAccordingToYScale(levelCubeTile.Position, levelCubeTile.Height), Quaternion.identity);
+            instantiatedObject.transform.localScale = new Vector3(1, levelCubeTile.Height, 1);
+
             if (levelCubeTile.IsLightTile)
             {
                 ConfigureLightCubeTile(instantiatedObject);
             }
+
+
+            // if increase height (y scale) we need move cube in y axis
+            Vector3 CalcTilePosAccordingToYScale(Vector3 pos, int height) => new Vector3(pos.x, height - 1, pos.z);
         }
 
         private void ConfigureLightCubeTile(GameObject instantiatedObject)
         {
             instantiatedObject.tag = "LightCube";
-            
+
             if (instantiatedObject.TryGetComponent(out CubeTile cube))
             {
                 cube.ChangeTileStatus(CubeType.TurnedOffTile);
