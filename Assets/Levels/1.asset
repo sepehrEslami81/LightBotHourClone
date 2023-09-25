@@ -14,12 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: 1
   cubeTiles:
-  - isLightTile: 0
+  - isLightTile: 1
+    isStartPoint: 0
     position: {x: 0, y: 0, z: 0}
     height: 1
   - isLightTile: 0
+    isStartPoint: 0
     position: {x: 0, y: 0, z: -1}
     height: 1
   - isLightTile: 1
+    isStartPoint: 0
     position: {x: 0, y: 0, z: -2}
     height: 1
