@@ -22,6 +22,11 @@ namespace Level
             foreach (var levelCubeTile in level.CubeTiles)
             {
                 LoadCubeTile(levelCubeTile);
+
+                if (levelCubeTile.IsStartPoint)
+                {
+                    // todo: set robot pos at start 
+                }
             }
         }
 
@@ -29,7 +34,8 @@ namespace Level
         {
             var instantiatedObject = Instantiate(tileCubePrefab,
                 CalcTilePosAccordingToYScale(levelCubeTile.Position, levelCubeTile.Height), Quaternion.identity);
-            instantiatedObject.transform.localScale = new Vector3(1, levelCubeTile.Height, 1);
+            
+            instantiatedObject.transform.localScale = CalcTileScale(levelCubeTile.Height); 
 
             if (levelCubeTile.IsLightTile)
             {
@@ -39,6 +45,9 @@ namespace Level
 
             // if increase height (y scale) we need move cube in y axis
             Vector3 CalcTilePosAccordingToYScale(Vector3 pos, int height) => new Vector3(pos.x, height - 1, pos.z);
+            
+            // create scale v3 according to height value
+            Vector3 CalcTileScale(int height) => new Vector3(1, levelCubeTile.Height, 1);
         }
 
         private void ConfigureLightCubeTile(GameObject instantiatedObject)
