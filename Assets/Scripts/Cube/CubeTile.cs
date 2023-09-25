@@ -10,13 +10,7 @@ namespace Cube
         [SerializeField] private Color turnedOffColor;
 
         public CubeType Type { get; private set; } = CubeType.Tile;
-
-        private void Awake()
-        {
-            if(gameObject.CompareTag("LightCube"))
-                ChangeTileMaterial(turnedOffColor);
-        }
-
+        
         public void ChangeTileStatus(CubeType type)
         {
             switch (type)
