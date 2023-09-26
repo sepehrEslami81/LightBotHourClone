@@ -1,5 +1,6 @@
 ﻿using System;
 using Cube;
+using Robot;
 using UnityEngine;
 
 namespace Level
@@ -7,6 +8,7 @@ namespace Level
     public class LevelController : MonoBehaviour
     {
         [SerializeField] private LevelData level;
+        [SerializeField] private RobotController robot;
         [SerializeField] private GameObject tileCubePrefab;
 
         private void Start()
@@ -25,29 +27,25 @@ namespace Level
 
                 if (levelCubeTile.IsStartPoint)
                 {
-                    // todo: set robot pos at start 
+                    robot.ForceMove(levelCubeTile.Position, levelCubeTile.Height);
                 }
             }
         }
 
         private void LoadCubeTile(CubeTileData levelCubeTile)
         {
-            var instantiatedObject = Instantiate(tileCubePrefab,
-                CalcTilePosAccordingToYScale(levelCubeTile.Position, levelCubeTile.Height), Quaternion.identity);
+            var instantiatedObject = Instantiate(tileCubePrefab, levelCubeTile.CalculatedPosition, Quaternion.identity);
             
-            instantiatedObject.transform.localScale = CalcTileScale(levelCubeTile.Height); 
+            instantiatedObject.transform.localScale = CalcTileScale(levelCubeTile); 
 
             if (levelCubeTile.IsLightTile)
             {
                 ConfigureLightCubeTile(instantiatedObject);
             }
 
-
-            // if increase height (y scale) we need move cube in y axis
-            Vector3 CalcTilePosAccordingToYScale(Vector3 pos, int height) => new Vector3(pos.x, height - 1, pos.z);
             
             // create scale v3 according to height value
-            Vector3 CalcTileScale(int height) => new Vector3(1, levelCubeTile.Height, 1);
+            Vector3 CalcTileScale(CubeTileData cubeTileData) => new Vector3(1, cubeTileData.Height, 1);
         }
 
         private void ConfigureLightCubeTile(GameObject instantiatedObject)

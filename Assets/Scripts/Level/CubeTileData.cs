@@ -15,5 +15,7 @@ namespace Level
         public Vector3 Position => position;
         public bool IsLightTile => isLightTile;
         public bool IsStartPoint => isStartPoint;
+        
+        public Vector3 CalculatedPosition => new Vector3(position.x, height / 2f, position.z);
     }
 }
