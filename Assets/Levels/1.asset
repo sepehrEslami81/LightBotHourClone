@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: 1
   cubeTiles:
-  - isLightTile: 1
-    isStartPoint: 0
+  - isLightTile: 0
+    isStartPoint: 1
     position: {x: 0, y: 0, z: 0}
     height: 1
   - isLightTile: 0
