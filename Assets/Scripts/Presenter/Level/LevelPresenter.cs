@@ -1,14 +1,15 @@
-﻿using System;
-using Cube;
+﻿using Cube;
+using Model.Level;
+using Presenter.Robot;
 using Robot;
 using UnityEngine;
 
-namespace Level
+namespace Presenter.Level
 {
-    public class LevelController : MonoBehaviour
+    public class LevelPresenter : MonoBehaviour
     {
-        [SerializeField] private LevelData level;
-        [SerializeField] private RobotController robot;
+        [SerializeField] private LevelModel level;
+        [SerializeField] private RobotPresenter robot;
         [SerializeField] private GameObject tileCubePrefab;
 
         private void Start()
@@ -21,18 +22,19 @@ namespace Level
         {
             print("loading level " + level.LevelName);
 
-            foreach (var levelCubeTile in level.CubeTiles)
+            foreach (var cubeTile in level.CubeTileModels)
             {
-                LoadCubeTile(levelCubeTile);
+                LoadCubeTile(cubeTile);
 
-                if (levelCubeTile.IsStartPoint)
+                if (cubeTile.IsStartPoint)
                 {
-                    robot.SetPosition(levelCubeTile.Position, levelCubeTile.Height);
+                    var startPos = new Vector3(cubeTile.Position.x, cubeTile.Height, cubeTile.Position.z);
+                    robot.SetStartPosition(startPos);
                 }
             }
         }
 
-        private void LoadCubeTile(CubeTileData levelCubeTile)
+        private void LoadCubeTile(CubeTileModel levelCubeTile)
         {
             var instantiatedObject = Instantiate(tileCubePrefab, levelCubeTile.CalculatedPosition, Quaternion.identity);
             
@@ -45,7 +47,7 @@ namespace Level
 
             
             // create scale v3 according to height value
-            Vector3 CalcTileScale(CubeTileData cubeTileData) => new Vector3(1, cubeTileData.Height, 1);
+            Vector3 CalcTileScale(CubeTileModel cubeTileData) => new Vector3(1, cubeTileData.Height, 1);
         }
 
         private void ConfigureLightCubeTile(GameObject instantiatedObject)

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Level
+namespace Model.Level
 {
     [Serializable]
-    public class CubeTileData
+    public class CubeTileModel
     {
         [SerializeField] private bool isLightTile;
         [SerializeField] private bool isStartPoint;
