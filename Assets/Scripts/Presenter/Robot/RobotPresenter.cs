@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Model.Level;
 using Model.Robot;
 using UnityEngine;
 
@@ -8,7 +8,9 @@ namespace Presenter.Robot
     {
         [SerializeField] private Transform robotObject;
         [SerializeField] private float robotHeight;
+        
         private RobotModel _robotModel;
+        private LevelModel _currentLevel; 
 
         private void Awake()
         {
@@ -19,6 +21,11 @@ namespace Presenter.Robot
             };
         }
 
+        public void SetCurrentLevel(LevelModel model)
+        {
+            _currentLevel = model;
+        }
+        
         public void SetStartPosition(Vector3 pos)
         {
             pos.y += _robotModel.RobotHeight;
@@ -29,5 +36,7 @@ namespace Presenter.Robot
         {
             _robotModel.RobotGameObject.position = _robotModel.StartPosition;
         }
+        
+        
     }
 }
