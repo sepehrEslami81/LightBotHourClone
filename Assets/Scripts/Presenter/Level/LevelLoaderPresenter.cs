@@ -21,8 +21,6 @@ namespace Presenter.Level
         public void LoadLevel()
         {
             print("loading level " + level.Id);
-            
-            robot.SetCurrentLevel(level);
 
             foreach (var cubeTile in level.CubeTileModels)
             {
