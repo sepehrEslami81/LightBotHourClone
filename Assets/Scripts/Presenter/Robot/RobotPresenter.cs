@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Model;
 using Model.Robot;
 using Presenter.Level;
@@ -10,35 +9,30 @@ namespace Presenter.Robot
     
     public class RobotPresenter : MonoBehaviour
     {
-        [SerializeField] private Transform robotObject;
-        [SerializeField] private float robotHeight;
         [SerializeField] private float lerpTime = 0.1f;
-        [SerializeField] private float positionThreshold = 1.5f;
+        [SerializeField] private float positionThreshold = 1.5f; // based on the test result
 
         private RobotModel _robotModel;
-        private LevelPresenter _levelPresenter;
         
         private void Awake()
         {
-            _robotModel = new RobotModel()
+            if (TryGetComponent(out RobotModel model))
             {
-                RobotHeight = robotHeight,
-                RobotGameObject = robotObject ? robotObject : transform 
-            };
-        }
-
-        public void SetLevelPresenter(LevelPresenter level)
-        {
-            _levelPresenter = level;
+                _robotModel = model;
+            }
+            else
+            {
+                Debug.LogError("failed to load robot model.");
+            }
         }
 
         public void ResetRobotPosition()
         {
-            var tile = _levelPresenter.StartTile;
+            var tile = LevelPresenter.StartTile;
             var wp = tile.WorldPosition;
             wp.y = _robotModel.RobotHeight + tile.Height;
 
-            _robotModel.CurrentPosition = tile.Position;
+            _robotModel.Position = tile.Position;
             _robotModel.RobotGameObject.transform.position = wp;
         }
 
@@ -52,7 +46,7 @@ namespace Presenter.Robot
             }
             
             
-            _robotModel.CurrentPosition = newPosition;
+            _robotModel.Position = newPosition;
             _robotModel.RobotGameObject.transform.position = CreatePosition(newWorldPosition, tileHeight, _robotModel.RobotHeight);
             yield return new WaitForFixedUpdate();
 

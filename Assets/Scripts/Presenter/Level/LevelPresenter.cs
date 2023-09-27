@@ -13,15 +13,17 @@ namespace Presenter.Level
         [SerializeField] private LevelModel level;
         [SerializeField] private GameObject tileCubePrefab;
 
+        private static LevelPresenter _instance;
         private RobotPresenter _robot;
-
-        public CubeTileModel StartTile => level.CubeTileModels.First(p => p.IsStartPoint);
+        
+        public static CubeTileModel StartTile => _instance.level.CubeTileModels.First(p => p.IsStartPoint);
         
         private void Awake()
         {
+            _instance = this;
+            
             var robotObject = GetPlayerObject();
             SetRobotPresenter(robotObject);
-            
         }
         
         private void Start()
@@ -29,16 +31,14 @@ namespace Presenter.Level
             LoadLevel();
         }
 
-        public CubeTileModel GetTileByPosition(Position position) =>
-            level.CubeTileModels.FirstOrDefault(p => p.Position == position);
+        public static CubeTileModel GetTileByPosition(Position position) =>
+            _instance.level.CubeTileModels.FirstOrDefault(p => p.Position == position);
         
 
         internal void LoadLevel()
         {
             print("loading level " + level.Id);
 
-            _robot.SetLevelPresenter(this);
-            
             foreach (var cubeTile in level.CubeTileModels)
             {
                 LoadCubeTile(cubeTile);

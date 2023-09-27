@@ -2,11 +2,13 @@
 
 namespace Model.Robot
 {
-    public class RobotModel
+    public class RobotModel : MonoBehaviour
     {
-        public float RobotHeight { get; set; }
-        public Transform RobotGameObject { get; set; }
-        public Vector3 CurrentWorldPosition => RobotGameObject.transform.position;
-        public Position CurrentPosition { get; set; }
+        [SerializeField] private float robotHeight = .5f;
+
+        public float RobotHeight => robotHeight;
+        public Transform RobotGameObject => transform;
+        public Vector3 CurrentWorldPosition => transform.position;
+        public Position Position { get; set; }
     }
 }
