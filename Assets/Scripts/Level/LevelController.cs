@@ -27,7 +27,7 @@ namespace Level
 
                 if (levelCubeTile.IsStartPoint)
                 {
-                    robot.ForceMove(levelCubeTile.Position, levelCubeTile.Height);
+                    robot.SetPosition(levelCubeTile.Position, levelCubeTile.Height);
                 }
             }
         }
