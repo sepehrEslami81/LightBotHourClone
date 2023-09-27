@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Presenter.Level
 {
-    public class LevelPresenter : MonoBehaviour
+    public class LevelLoaderPresenter : MonoBehaviour
     {
         [SerializeField] private LevelModel level;
         [SerializeField] private RobotPresenter robot;
