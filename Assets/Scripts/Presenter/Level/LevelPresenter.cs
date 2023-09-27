@@ -20,7 +20,7 @@ namespace Presenter.Level
 
         public void LoadLevel()
         {
-            print("loading level " + level.LevelName);
+            print("loading level " + level.Id);
 
             foreach (var cubeTile in level.CubeTileModels)
             {
@@ -30,6 +30,7 @@ namespace Presenter.Level
                 {
                     var startPos = new Vector3(cubeTile.Position.x, cubeTile.Height, cubeTile.Position.z);
                     robot.SetStartPosition(startPos);
+                    robot.ResetRobotPosition();
                 }
             }
         }

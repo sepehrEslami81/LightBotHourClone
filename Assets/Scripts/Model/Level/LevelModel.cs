@@ -6,10 +6,10 @@ namespace Model.Level
     [CreateAssetMenu(fileName = "New Level", menuName = "Levels/Create New Level", order = 0)]
     public class LevelModel : ScriptableObject
     {
-        [SerializeField] private string levelName;
+        [SerializeField] private int id;
         [SerializeField] private CubeTileModel[] cubeTileModels;
 
-        public string LevelName => levelName;
+        public int Id => id;
         public CubeTileModel[] CubeTileModels => cubeTileModels;
     }
 }
