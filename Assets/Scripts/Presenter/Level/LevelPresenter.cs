@@ -1,37 +1,51 @@
-﻿using Cube;
+﻿using System;
+using System.Linq;
+using Cube;
+using Model;
 using Model.Level;
 using Presenter.Robot;
-using Robot;
 using UnityEngine;
 
 namespace Presenter.Level
 {
-    public class LevelLoaderPresenter : MonoBehaviour
+    public class LevelPresenter : MonoBehaviour
     {
         [SerializeField] private LevelModel level;
-        [SerializeField] private RobotPresenter robot;
         [SerializeField] private GameObject tileCubePrefab;
 
+        private RobotPresenter _robot;
+
+        public CubeTileModel StartTile => level.CubeTileModels.First(p => p.IsStartPoint);
+        
+        private void Awake()
+        {
+            var robotObject = GetPlayerObject();
+            SetRobotPresenter(robotObject);
+            
+        }
+        
         private void Start()
         {
             LoadLevel();
         }
 
+        public CubeTileModel GetTileByPosition(Position position) =>
+            level.CubeTileModels.FirstOrDefault(p => p.Position == position);
+        
 
-        public void LoadLevel()
+        internal void LoadLevel()
         {
             print("loading level " + level.Id);
 
+            _robot.SetLevelPresenter(this);
+            
             foreach (var cubeTile in level.CubeTileModels)
             {
                 LoadCubeTile(cubeTile);
 
                 if (cubeTile.IsStartPoint)
                 {
-                    var startPos = new Vector3(cubeTile.Position.x, cubeTile.Height, cubeTile.Position.z);
-                    robot.SetStartPosition(startPos);
-                    robot.ResetRobotPosition();
-                    
+                    _robot.ResetRobotPosition();
                 }
             }
         }
@@ -63,6 +77,30 @@ namespace Presenter.Level
             else
             {
                 Debug.LogError("failed to get CubeTile component from cube!");
+            }
+        }
+        
+        
+        private GameObject GetPlayerObject()
+        {
+            var robotObject = GameObject.FindWithTag("Player");
+            if (robotObject is null)
+            {
+                throw new NullReferenceException("player object not found!");
+            }
+
+            return robotObject;
+        }
+
+        private void SetRobotPresenter(GameObject robotObject)
+        {
+            if (robotObject.TryGetComponent(out RobotPresenter presenter))
+            {
+                _robot = presenter;
+            }
+            else
+            {
+                Debug.LogError("failed to load robot presenter.");
             }
         }
     }
