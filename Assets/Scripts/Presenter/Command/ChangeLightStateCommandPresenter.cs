@@ -23,7 +23,7 @@ namespace Presenter.Command
 
             if (!robotTile.IsLightTile)
             {
-                Debug.LogError("Tile is not a light tile");
+                Debug.Log("Tile is not a light tile");
                 yield break; 
             }
 
