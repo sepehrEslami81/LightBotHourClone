@@ -398,7 +398,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 863890809}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 290.4612, y: 328.89993, z: -11.095018}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -527,7 +527,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267378519}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 290.4612, y: 328.89993, z: -11.095018}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -660,8 +660,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1305228590}
   m_LocalRotation: {x: -0, y: -0, z: 0.0000000037252903, w: 1}
-  m_LocalPosition: {x: 0.000002861023, y: 0.0000009536743, z: 0}
-  m_LocalScale: {x: 1, y: 0.99999994, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -769,7 +769,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lerpTime: 0.1
-  positionThreshold: 1.5
 --- !u!1 &1894234606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1369,6 +1368,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   robotModel: {fileID: 6621552338611026779}
   robotPresenter: {fileID: 1811054033}
+  moveThreshold: 1.5
 --- !u!114 &6621552338611026779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1396,3 +1396,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   robotModel: {fileID: 6621552338611026779}
   robotPresenter: {fileID: 1811054033}
+  moveThreshold: 2.49

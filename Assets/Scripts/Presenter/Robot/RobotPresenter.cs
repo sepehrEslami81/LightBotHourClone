@@ -7,14 +7,12 @@ using UnityEngine;
 
 namespace Presenter.Robot
 {
-    
     public class RobotPresenter : MonoBehaviour
     {
         [SerializeField] private float lerpTime = 0.1f;
-        [SerializeField] private float positionThreshold = 1.5f; // based on the test result
 
         private RobotModel _robotModel;
-        
+
         private void Awake()
         {
             if (TryGetComponent(out RobotModel model))
@@ -30,7 +28,7 @@ namespace Presenter.Robot
         public void ResetRobotPosition()
         {
             var tile = TileMapPresenter.StartTile;
-            
+
             var wp = tile.WorldPosition;
             wp.y = _robotModel.RobotHeight + tile.Height;
 
@@ -46,29 +44,76 @@ namespace Presenter.Robot
                 RobotDirection.Backward => new Position(0, -1),
                 RobotDirection.Left => new Position(-1, 0),
                 RobotDirection.Right => new Position(1, 0),
-                
+
                 // just for fix rider warning
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
 
-        public IEnumerator Move(Position newPosition, Vector3 newWorldPosition, int tileHeight) {
+        public IEnumerator Move(Position newPosition, Vector3 newWorldPosition, int tileHeight,
+            double positionThreshold)
+        {
+            var targetWorldPos = CreatePosition(newWorldPosition, tileHeight, _robotModel.RobotHeight);
+            
             while ((_robotModel.RobotGameObject.transform.position - newWorldPosition).magnitude > positionThreshold)
             {
-                
-                var lerp = Vector3.Lerp(_robotModel.CurrentWorldPosition, CreatePosition(newWorldPosition, tileHeight, _robotModel.RobotHeight), lerpTime);
-                _robotModel.RobotGameObject.transform.position = lerp;
+                print((_robotModel.RobotGameObject.transform.position - newWorldPosition).magnitude);
+
+                var a = _robotModel.CurrentWorldPosition;
+                LerpPosition(a, targetWorldPos, lerpTime);
+
                 yield return new WaitForFixedUpdate();
             }
-            
-            
-            _robotModel.Position = newPosition;
-            _robotModel.RobotGameObject.transform.position = CreatePosition(newWorldPosition, tileHeight, _robotModel.RobotHeight);
+
+            FixPosition(targetWorldPos, newPosition);
             yield return new WaitForFixedUpdate();
 
-
+            print("done");
+            
+            
+            
             Vector3 CreatePosition(Vector3 pos, int tHeight, float rHeight) =>
                 new Vector3(pos.x, tHeight + rHeight, pos.z);
         }
+        
+        public IEnumerator Jump(Position newPosition, Vector3 newWorldPosition, int tileHeight,
+            double positionThreshold)
+        {
+            var targetWorldPos = CreatePosition(newWorldPosition, tileHeight, _robotModel.RobotHeight);
+            
+            while ((_robotModel.RobotGameObject.transform.position - newWorldPosition).magnitude < positionThreshold)
+            {
+                print((_robotModel.RobotGameObject.transform.position - newWorldPosition).magnitude);
+
+                var a = _robotModel.CurrentWorldPosition;
+                LerpPosition(a, targetWorldPos, lerpTime);
+
+                yield return new WaitForFixedUpdate();
+            }
+
+            FixPosition(targetWorldPos, newPosition);
+            yield return new WaitForFixedUpdate();
+
+            print("done");
+            
+            
+            
+            Vector3 CreatePosition(Vector3 pos, int tHeight, float rHeight) =>
+                new Vector3(pos.x, tHeight + rHeight, pos.z);
+        }
+
+
+        private void LerpPosition(Vector3 a, Vector3 b, float t)
+        {
+            var lerp = Vector3.Lerp(a, b, t);
+            _robotModel.RobotGameObject.transform.position = lerp;
+        }
+
+        private void FixPosition(Vector3 targetWorldPos, Position targetPos)
+        {
+            _robotModel.Position = targetPos;
+            _robotModel.RobotGameObject.transform.position = targetWorldPos;
+        }
+
     }
 }

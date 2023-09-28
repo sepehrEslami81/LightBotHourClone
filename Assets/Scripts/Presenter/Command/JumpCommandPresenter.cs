@@ -10,9 +10,13 @@ namespace Presenter.Command
     {
         [SerializeField] private RobotModel robotModel;
         [SerializeField] private RobotPresenter robotPresenter;
+        [SerializeField] private float moveThreshold = 2.49f; // based on the test result
+
         
         public IEnumerator Execute()
         {
+            Debug.Log("Exec: Execute jump");
+
             var nextPos = robotPresenter.GetNextTilePosByDirection();
             var tile = TileMapPresenter.GetTileByPosition(robotModel.Position + nextPos);
 
@@ -24,11 +28,12 @@ namespace Presenter.Command
                     (currentRobotY - tile.Height > 0) // check can jump from up to down
                 )
                 {
-                    yield return robotPresenter.Walk(tile.Position, tile.WorldPosition, tile.Height);
+                    yield return StartCoroutine(robotPresenter.Jump(tile.Position, tile.WorldPosition, tile.Height, moveThreshold));
                 }
                 else
                 {
                     Debug.Log("cant jump");
+                    yield return null;
                 }
                 
                 
@@ -36,6 +41,7 @@ namespace Presenter.Command
             else
             {
                 Debug.Log("end of path!");
+                yield return null;
             }
             
         }
