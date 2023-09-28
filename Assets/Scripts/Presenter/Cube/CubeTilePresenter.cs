@@ -1,9 +1,15 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Cube
+namespace Presenter.Cube
 {
-    public class CubeTile : MonoBehaviour
+    public enum CubeType
+    {
+        Tile,
+        TurnedOnTile,
+        TurnedOffTile
+    }
+    
+    public class CubeTilePresenter : MonoBehaviour
     {
         private Renderer _renderer;
         [SerializeField] private Color turnedOnColor;

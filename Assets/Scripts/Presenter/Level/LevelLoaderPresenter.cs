@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Linq;
-using Cube;
-using Model;
 using Model.Level;
 using Presenter.Robot;
 using UnityEngine;

@@ -1347,6 +1347,7 @@ GameObject:
   - component: {fileID: 1811054033}
   - component: {fileID: 6621552338611026778}
   - component: {fileID: 6621552338611026780}
+  - component: {fileID: 6621552338611026781}
   m_Layer: 0
   m_Name: Robot
   m_TagString: Player
@@ -1397,3 +1398,17 @@ MonoBehaviour:
   robotModel: {fileID: 6621552338611026779}
   robotPresenter: {fileID: 1811054033}
   moveThreshold: 2.49
+--- !u!114 &6621552338611026781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6621552338611026777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 952bcf959fdd48dc8c3c58ca1eb33bad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  robotModel: {fileID: 6621552338611026779}
+  delayTime: 0.1

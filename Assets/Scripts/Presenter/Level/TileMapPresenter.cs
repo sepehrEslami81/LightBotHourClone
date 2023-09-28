@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
-using Cube;
 using Model;
 using Model.Level;
+using Presenter.Cube;
 using Presenter.Robot;
 using UnityEngine;
 
@@ -60,6 +60,7 @@ namespace Presenter.Level
         {
             var instantiatedObject = CreateCubeTile(parent: transform);
             instantiatedObject.transform.localScale = CalcTileScale(levelCubeTile);
+            levelCubeTile.CubeTileGameObject = instantiatedObject; 
 
             if (levelCubeTile.IsLightTile)
             {
@@ -88,7 +89,7 @@ namespace Presenter.Level
         {
             instantiatedObject.tag = "LightCube";
 
-            if (instantiatedObject.TryGetComponent(out CubeTile cube))
+            if (instantiatedObject.TryGetComponent(out CubeTilePresenter cube))
             {
                 cube.ChangeTileStatus(CubeType.TurnedOffTile);
             }
@@ -96,6 +97,7 @@ namespace Presenter.Level
             {
                 Debug.LogError("failed to get CubeTile component from cube!");
             }
+
         }
 
         private GameObject GetRobotObject()

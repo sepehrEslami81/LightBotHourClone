@@ -1,6 +1,6 @@
 ﻿using System;
+using Presenter.Cube;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Model.Level
 {
@@ -18,5 +18,7 @@ namespace Model.Level
         public bool IsLightTile => isLightTile;
         public bool IsStartPoint => isStartPoint;
         public Position Position => position;
+
+        public GameObject CubeTileGameObject { get; set; }
     }
 }
