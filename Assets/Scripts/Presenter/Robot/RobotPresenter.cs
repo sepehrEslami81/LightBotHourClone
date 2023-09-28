@@ -28,7 +28,8 @@ namespace Presenter.Robot
 
         public void ResetRobotPosition()
         {
-            var tile = LevelPresenter.StartTile;
+            var tile = TileMapPresenter.StartTile;
+            
             var wp = tile.WorldPosition;
             wp.y = _robotModel.RobotHeight + tile.Height;
 
