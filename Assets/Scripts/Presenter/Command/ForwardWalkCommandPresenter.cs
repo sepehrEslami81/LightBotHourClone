@@ -21,7 +21,8 @@ namespace Presenter.Command
 
         public IEnumerator Execute()
         {
-            var tile = TileMapPresenter.GetTileByPosition(_robotModel.Position + new Position(0, 1));
+            var nextPosition = _robotPresenter.GetNextTilePosByDirection();
+            var tile = TileMapPresenter.GetTileByPosition(_robotModel.Position + nextPosition);
             if (tile != null)
             {
                 yield return StartCoroutine(_robotPresenter.Walk(tile.Position, tile.WorldPosition, tile.Height));

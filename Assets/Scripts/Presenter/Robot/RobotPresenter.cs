@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Model;
 using Model.Robot;
 using Presenter.Level;
@@ -35,6 +36,20 @@ namespace Presenter.Robot
 
             _robotModel.Position = tile.Position;
             _robotModel.RobotGameObject.transform.position = wp;
+        }
+
+        public Position GetNextTilePosByDirection()
+        {
+            return _robotModel.Direction switch
+            {
+                RobotDirection.Forward => new Position(0, 1),
+                RobotDirection.Backward => new Position(0, -1),
+                RobotDirection.Left => new Position(-1, 0),
+                RobotDirection.Right => new Position(1, 0),
+                
+                // just for fix rider warning
+                _ => throw new ArgumentOutOfRangeException()
+            };
         }
 
         public IEnumerator Walk(Position newPosition, Vector3 newWorldPosition, int tileHeight) {
