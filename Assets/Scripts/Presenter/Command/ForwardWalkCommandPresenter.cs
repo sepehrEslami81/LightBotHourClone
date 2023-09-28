@@ -1,10 +1,8 @@
 ﻿using System.Collections;
-using Model;
 using Model.Robot;
 using Presenter.Level;
 using Presenter.Robot;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Presenter.Command
 {
