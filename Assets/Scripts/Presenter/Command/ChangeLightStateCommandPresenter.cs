@@ -14,36 +14,32 @@ namespace Presenter.Command
         public IEnumerator Execute()
         {
             var robotTile = TileMapPresenter.GetTileByPosition(robotModel.Position);
-            if (robotTile is not null)
-            {
-                if (robotTile.IsLightTile)
-                {
-                    if (robotTile.CubeTileGameObject.TryGetComponent(out CubeTilePresenter presenter))
-                    {
-                        CubeType type = presenter.Type == CubeType.TurnedOffTile
-                            ? CubeType.TurnedOnTile
-                            : CubeType.TurnedOffTile;
 
-                        presenter.ChangeTileStatus(type);
-
-                        yield return new WaitForSeconds(delayTime);
-                    }
-                    else
-                    {
-                        Debug.LogError("cube presenter not found");
-                    }
-                }
-                else
-                {
-                    Debug.LogError("tile is not light tile");
-                    yield return null;
-                }
-            }
-            else
+            if (robotTile == null)
             {
-                Debug.LogError("tile not found");
-                yield return null;
+                Debug.LogError("Tile not found");
+                yield break; 
             }
+
+            if (!robotTile.IsLightTile)
+            {
+                Debug.LogError("Tile is not a light tile");
+                yield break; 
+            }
+
+            if (!robotTile.CubeTileGameObject.TryGetComponent(out CubeTilePresenter presenter))
+            {
+                Debug.LogError("Cube presenter not found");
+                yield break; 
+            }
+
+            var type = presenter.Type == CubeType.TurnedOffTile
+                ? CubeType.TurnedOnTile
+                : CubeType.TurnedOffTile;
+
+            presenter.ChangeTileStatus(type);
+
+            yield return new WaitForSeconds(delayTime);
         }
     }
 }
