@@ -28,7 +28,7 @@ namespace Presenter.Command
                     (currentRobotY - tile.Height > 0) // check can jump from up to down
                 )
                 {
-                    yield return StartCoroutine(robotPresenter.Jump(tile.Position, tile.WorldPosition, tile.Height, moveThreshold));
+                    yield return robotPresenter.Jump(tile.Position, tile.WorldPosition, tile.Height, moveThreshold);
                 }
                 else
                 {

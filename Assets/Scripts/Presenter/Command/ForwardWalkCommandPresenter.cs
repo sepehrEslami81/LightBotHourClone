@@ -22,7 +22,7 @@ namespace Presenter.Command
                 var robotY = robotModel.CurrentRobotYAxis;
                 if (robotY - tile.Height == 0)
                 {
-                    yield return StartCoroutine(robotPresenter.Move(tile.Position, tile.WorldPosition, tile.Height, moveThreshold));
+                    yield return robotPresenter.Move(tile.Position, tile.WorldPosition, tile.Height, moveThreshold);
                 }
                 else
                 {
