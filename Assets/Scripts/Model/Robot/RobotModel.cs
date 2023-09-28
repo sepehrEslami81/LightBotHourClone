@@ -13,5 +13,7 @@ namespace Model.Robot
         public Vector3 CurrentWorldPosition => transform.position;
         public Position Position { get; set; }
         public RobotDirection Direction { get; set; } = RobotDirection.Forward;
+        public int CurrentRobotYAxis => (int)(CurrentWorldPosition.y - RobotHeight);
+
     }
 }
