@@ -52,7 +52,7 @@ namespace Presenter.Robot
             };
         }
 
-        public IEnumerator Walk(Position newPosition, Vector3 newWorldPosition, int tileHeight) {
+        public IEnumerator Move(Position newPosition, Vector3 newWorldPosition, int tileHeight) {
             while ((_robotModel.RobotGameObject.transform.position - newWorldPosition).magnitude > positionThreshold)
             {
                 
