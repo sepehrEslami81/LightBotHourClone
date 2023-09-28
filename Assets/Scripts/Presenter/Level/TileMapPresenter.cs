@@ -58,23 +58,30 @@ namespace Presenter.Level
 
         private void LoadCubeTile(CubeTileModel levelCubeTile)
         {
-            var instantiatedObject = CreateCubeTile();
+            var instantiatedObject = CreateCubeTile(parent: transform);
             instantiatedObject.transform.localScale = CalcTileScale(levelCubeTile);
-            
-            SetParent(instantiatedObject);
 
             if (levelCubeTile.IsLightTile)
             {
                 SetTileAsLightCubeTile(instantiatedObject);
             }
 
+
             // create scale v3 according to height value
             Vector3 CalcTileScale(CubeTileModel cubeTileData) => new Vector3(1, cubeTileData.Height, 1);
 
-            GameObject CreateCubeTile() =>
-                Instantiate(cubeTilePrefab, levelCubeTile.CalculatedPosition, Quaternion.identity);
 
-            void SetParent(GameObject cube) => cube.transform.parent = transform;
+            GameObject CreateCubeTile(Transform parent)
+            {
+                var pos = CalculatedPosition(levelCubeTile.WorldPosition, levelCubeTile.Height);
+                var go = Instantiate(cubeTilePrefab, pos, Quaternion.identity);
+                go.transform.parent = parent;
+
+                return go;
+            }
+            
+            Vector3 CalculatedPosition(Vector3 worldPos, int height) =>
+                new Vector3(worldPos.x, height / 2f, worldPos.z);
         }
 
         private void SetTileAsLightCubeTile(GameObject instantiatedObject)

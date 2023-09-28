@@ -18,7 +18,5 @@ namespace Model.Level
         public bool IsLightTile => isLightTile;
         public bool IsStartPoint => isStartPoint;
         public Position Position => position;
-        
-        public Vector3 CalculatedPosition => new Vector3(worldPosition.x, height / 2f, worldPosition.z);
     }
 }
