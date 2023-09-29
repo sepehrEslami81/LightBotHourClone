@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using Model.Commands;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Presenter.Command
 {
