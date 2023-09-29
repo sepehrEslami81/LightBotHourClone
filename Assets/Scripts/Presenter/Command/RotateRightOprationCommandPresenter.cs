@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Presenter.Command
 {
-    public class RotateRightCommandPresenter : Command
+    public class RotateRightOprationCommandPresenter : OprationCommand
     {
         [SerializeField] private RobotPresenter robotPresenter;
         

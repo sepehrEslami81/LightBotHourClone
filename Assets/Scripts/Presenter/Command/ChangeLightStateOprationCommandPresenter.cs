@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Presenter.Command
 {
-    public class ChangeLightStateCommandPresenter : Command
+    public class ChangeLightStateOprationCommandPresenter : OprationCommand
     {
         [SerializeField] private RobotModel robotModel;
         [Range(0, 3f)] [SerializeField] private float delayTime = .2f;

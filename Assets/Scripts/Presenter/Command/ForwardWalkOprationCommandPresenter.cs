@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Presenter.Command
 {
-    public class ForwardWalkCommandPresenter : Command
+    public class ForwardWalkOprationCommandPresenter : OprationCommand
     {
         [SerializeField] private RobotModel robotModel;
         [SerializeField] private RobotPresenter robotPresenter;

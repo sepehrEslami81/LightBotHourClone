@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Presenter.Command
 {
-    public abstract class Command : MonoBehaviour
+    public abstract class OprationCommand : MonoBehaviour
     {
         [SerializeField] private CommandNames commandName;
 
