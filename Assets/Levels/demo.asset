@@ -30,29 +30,29 @@ MonoBehaviour:
     height: 1
   - isLightTile: 0
     isStartPoint: 0
-    worldPosition: {x: -1, y: 0, z: 0}
+    worldPosition: {x: 2, y: 0, z: 0}
     position:
-      x: -1
+      x: 2
       y: 0
     height: 1
   - isLightTile: 0
     isStartPoint: 0
-    worldPosition: {x: 0, y: 0, z: -1}
+    worldPosition: {x: 2, y: 0, z: -1}
     position:
-      x: 0
+      x: 2
       y: 1
-    height: 2
+    height: 1
   - isLightTile: 0
     isStartPoint: 0
-    worldPosition: {x: 0, y: 0, z: -2}
+    worldPosition: {x: 2, y: 0, z: -2}
     position:
-      x: 0
-      y: 3
-    height: 2
-  - isLightTile: 0
-    isStartPoint: 0
-    worldPosition: {x: 0, y: 0, z: -3}
-    position:
-      x: 0
+      x: 2
       y: 2
+    height: 2
+  - isLightTile: 1
+    isStartPoint: 0
+    worldPosition: {x: 2, y: 0, z: -3}
+    position:
+      x: 2
+      y: 3
     height: 1
