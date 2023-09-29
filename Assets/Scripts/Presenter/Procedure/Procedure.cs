@@ -17,7 +17,7 @@ namespace Presenter.Procedure
 
         public Procedure(ProcedureModel model)
         {
-            _model = new ProcedureModel();
+            _model = model;
             _commands = new Dictionary<int, OperationCommand>();
         }
         
