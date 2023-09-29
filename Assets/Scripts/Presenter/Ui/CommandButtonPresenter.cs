@@ -17,9 +17,11 @@ namespace Presenter.Ui
 
     public class CommandButtonPresenter : MonoBehaviour
     {
+        [HideInInspector] public int procedureIndex;
+        [HideInInspector] public int commandIndexInProcedure;
+        
         [SerializeField] private Image image;
         [SerializeField] private List<CommandSpriteModel> sprites;
-
 
         public static CommandButtonPresenter CreateCommandButton(GameObject prefab, Transform parent)
         {

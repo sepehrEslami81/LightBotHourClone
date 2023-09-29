@@ -90,7 +90,11 @@ namespace Presenter.Procedure
             var selectedProc = GetSelectedProc();
             var result = selectedProc.AddCommand(command);
 
-            var commandPanelUiIndex = proceduresUiPresenter.AddCommandToPanel(_selectedProcedure, commandName);
+            if(result)
+            {
+                var commandPanelUiIndex = proceduresUiPresenter.AddCommandToPanel(_selectedProcedure, commandName);
+                
+            }
 
             return result;
         }
