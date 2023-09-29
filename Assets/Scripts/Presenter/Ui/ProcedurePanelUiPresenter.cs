@@ -1,4 +1,5 @@
 ﻿using System;
+using Model.Commands;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,15 +9,16 @@ namespace Presenter.Ui
     {
         [SerializeField] private Text procedureLabel;
         [SerializeField] private Transform commandsHolder;
-        
-        [Header("Prefabs")]
-        [SerializeField] private GameObject commandButton;
-        
-        [Header("Color settings")]
-        [SerializeField] private Color normalColor;
+
+        [Header("Prefabs")] [SerializeField] private GameObject commandButtonPrefab;
+
+        [Header("Color settings")] [SerializeField]
+        private Color normalColor;
+
         [SerializeField] private Color selectedColor;
 
         private bool _isSelected;
+        private int _countOfCommands;
         private Image _procHolderImage;
 
         public bool IsSelected
@@ -44,6 +46,17 @@ namespace Presenter.Ui
         public void SetProcedureLabel(string label)
         {
             procedureLabel.text = label;
+        }
+
+        public int AddCommand(CommandNames command)
+        {
+            var btn = CreateButton();
+            btn.UpdateButtonUi(command, CommandButtonPlace.InProcedure);
+
+            return _countOfCommands++; // index of object
+            
+            CommandButtonPresenter CreateButton() =>
+                CommandButtonPresenter.CreateCommandButton(commandButtonPrefab, commandsHolder);
         }
     }
 }

@@ -45,14 +45,7 @@ namespace Presenter.Procedure
             _instance.proceduresUiPresenter.SelectProcedureById(index, isSelected);
         }
 
-        public bool AddNewCommand(CommandNames commandName)
-        {
-            var command = GetCommandByName(commandName);
-            var selectedProc = GetSelectedProc();
-            var result = selectedProc.AddCommand(command);
-
-            return result;
-        }
+        public static bool AddNewCommand(CommandNames commandName) => _instance.AddCommand(commandName);
 
         public void StartProgram()
         {
@@ -89,5 +82,18 @@ namespace Presenter.Procedure
         }
         
         private Procedure GetSelectedProc() => _procedures[_selectedProcedure];
+        
+        
+        private bool AddCommand(CommandNames commandName)
+        {
+            var command = GetCommandByName(commandName);
+            var selectedProc = GetSelectedProc();
+            var result = selectedProc.AddCommand(command);
+
+            var commandPanelUiIndex = proceduresUiPresenter.AddCommandToPanel(_selectedProcedure, commandName);
+
+            return result;
+        }
+
     }
 }

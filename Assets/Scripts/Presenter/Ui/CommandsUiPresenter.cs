@@ -1,5 +1,6 @@
 ﻿using System;
 using Model.Commands;
+using Presenter.Procedure;
 using UnityEngine;
 
 namespace Presenter.Ui
@@ -18,7 +19,7 @@ namespace Presenter.Ui
             if (rootPanel is null)
                 rootPanel = gameObject;
         }
-        
+
         public static void LoadCommands(CommandNames[] commands)
         {
             _instance.CreateCommandButtons(commands);
@@ -31,22 +32,15 @@ namespace Presenter.Ui
 
             foreach (var command in commands)
             {
-                var btnPresenter = CreateCommandButton(command);
-                btnPresenter.SetCommand(command, CommandButtonPlace.InCommandsPanel);
-            }
-        }
-
-        private CommandButtonPresenter CreateCommandButton(CommandNames commandName)
-        {
-            var btn = Instantiate(commandButtonPrefab, rootPanel.transform);
-            if (btn.TryGetComponent(out CommandButtonPresenter presenter))
-            {
-                return presenter;
+                var btnPresenter = CreateCommandButton();
+                btnPresenter.UpdateButtonUi(command, CommandButtonPlace.InCommandsPanel);
             }
 
-            throw new NullReferenceException("failed to get command button presenter.");
+            CommandButtonPresenter CreateCommandButton() => CommandButtonPresenter.CreateCommandButton(
+                commandButtonPrefab, rootPanel.transform);
         }
-        
+
+
         private void RemoveChildren()
         {
             for (int i = 0; i < rootPanel.transform.childCount; i++)

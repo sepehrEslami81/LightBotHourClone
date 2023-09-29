@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Model.Commands;
 using Model.Ui;
+using Presenter.Procedure;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,7 +20,19 @@ namespace Presenter.Ui
         [SerializeField] private Image image;
         [SerializeField] private List<CommandSpriteModel> sprites;
 
-        public void SetCommand(CommandNames command, CommandButtonPlace buttonPlace)
+
+        public static CommandButtonPresenter CreateCommandButton(GameObject prefab, Transform parent)
+        {
+            var btn = Instantiate(prefab, parent);
+            if (btn.TryGetComponent(out CommandButtonPresenter presenter))
+            {
+                return presenter;
+            }
+
+            throw new NullReferenceException("failed to get command button presenter.");
+        }
+
+        public void UpdateButtonUi(CommandNames command, CommandButtonPlace buttonPlace)
         {
             SetIcon(command);
             MakeButton(command, buttonPlace);
@@ -50,6 +64,7 @@ namespace Presenter.Ui
         private void AddCommandToSelectedProc(CommandNames command)
         {
             print($"try add {command.ToString()} to selected proc");
+            ProcedurePresenter.AddNewCommand(command);
         }
 
         private void RemoveCommandFromSelectedProc()

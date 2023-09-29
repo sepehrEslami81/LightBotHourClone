@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Model.Commands;
 using Model.Level;
 using UnityEngine;
 
@@ -44,6 +45,12 @@ namespace Presenter.Ui
             {
                 Debug.LogError("failed to get procedure panel ui presenter");
             }
+        }
+
+        public int AddCommandToPanel(int index, CommandNames commandName)
+        {
+            int indexOfAddedObject = _procedures[index].AddCommand(commandName);
+            return indexOfAddedObject;
         }
     }
 }
