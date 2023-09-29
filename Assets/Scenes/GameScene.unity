@@ -1348,9 +1348,9 @@ GameObject:
   - component: {fileID: 1811054033}
   - component: {fileID: 6621552338611026778}
   - component: {fileID: 6621552338611026780}
-  - component: {fileID: 6621552338611026781}
   - component: {fileID: 6621552338611026783}
   - component: {fileID: 6621552338611026782}
+  - component: {fileID: 6621552338611026781}
   m_Layer: 0
   m_Name: Robot
   m_TagString: Player
@@ -1412,7 +1412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   robotModel: {fileID: 6621552338611026779}
-  delayTime: 0.1
+  delayTime: 0.4
 --- !u!114 &6621552338611026782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1426,7 +1426,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   robotPresenter: {fileID: 1811054033}
-  rotationThreshold: 95
 --- !u!114 &6621552338611026783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1440,4 +1439,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   robotPresenter: {fileID: 1811054033}
-  rotationThreshold: 120
