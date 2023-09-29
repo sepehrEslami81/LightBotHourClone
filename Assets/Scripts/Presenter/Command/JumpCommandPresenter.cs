@@ -10,7 +10,6 @@ namespace Presenter.Command
     {
         [SerializeField] private RobotModel robotModel;
         [SerializeField] private RobotPresenter robotPresenter;
-        [SerializeField] private float moveThreshold = 2.49f; // based on the test result
 
         
         public IEnumerator Execute()
@@ -28,7 +27,7 @@ namespace Presenter.Command
                     (currentRobotY - tile.Height > 0) // check can jump from up to down
                 )
                 {
-                    yield return robotPresenter.Jump(tile.Position, tile.WorldPosition, tile.Height, moveThreshold);
+                    yield return robotPresenter.Move(tile.Position, tile.WorldPosition, tile.Height);
                 }
                 else
                 {

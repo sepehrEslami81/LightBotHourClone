@@ -679,7 +679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e38ecb3b81f4a48881622fdaf43079a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: {fileID: 11400000, guid: d0807c1d2e799594d9766e5de3208f40, type: 2}
+  level: {fileID: 11400000, guid: d84ae1dc19fd83a42aed219f059c0a87, type: 2}
 --- !u!1 &1482676724
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,7 +768,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 011777a80df84d3c81d46eadf1a784c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lerpTime: 0.1
+  lerpPosSpeed: 20
+  lerpRotSpeed: 250
 --- !u!1 &1894234606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1348,6 +1349,8 @@ GameObject:
   - component: {fileID: 6621552338611026778}
   - component: {fileID: 6621552338611026780}
   - component: {fileID: 6621552338611026781}
+  - component: {fileID: 6621552338611026783}
+  - component: {fileID: 6621552338611026782}
   m_Layer: 0
   m_Name: Robot
   m_TagString: Player
@@ -1369,7 +1372,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   robotModel: {fileID: 6621552338611026779}
   robotPresenter: {fileID: 1811054033}
-  moveThreshold: 1.5
 --- !u!114 &6621552338611026779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1397,7 +1399,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   robotModel: {fileID: 6621552338611026779}
   robotPresenter: {fileID: 1811054033}
-  moveThreshold: 2.49
 --- !u!114 &6621552338611026781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1412,3 +1413,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   robotModel: {fileID: 6621552338611026779}
   delayTime: 0.1
+--- !u!114 &6621552338611026782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6621552338611026777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 553f16a1db4444ccafdbbe7fb59923cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  robotPresenter: {fileID: 1811054033}
+  rotationThreshold: 95
+--- !u!114 &6621552338611026783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6621552338611026777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 226ea4800294428f84d0d57024a2f36a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  robotPresenter: {fileID: 1811054033}
+  rotationThreshold: 120

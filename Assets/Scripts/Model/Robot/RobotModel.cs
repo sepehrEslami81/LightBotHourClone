@@ -2,7 +2,7 @@
 
 namespace Model.Robot
 {
-    public enum RobotDirection { Forward = 0, Backward, Left, Right }
+    public enum RobotDirection { Forward = 0, Right, Backward, Left  }
     
     public class RobotModel : MonoBehaviour
     {

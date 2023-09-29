@@ -3,13 +3,17 @@ using System.Collections;
 using Model;
 using Model.Robot;
 using Presenter.Level;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Presenter.Robot
 {
     public class RobotPresenter : MonoBehaviour
     {
-        [SerializeField] private float lerpTime = 0.1f;
+        [Header("Lerp speed settings")]
+        [Range(1, 100), SerializeField] private float lerpPosSpeed = 60;
+        [Range(1, 360), SerializeField] private float lerpRotSpeed = 60;
 
         private RobotModel _robotModel;
 
@@ -41,65 +45,65 @@ namespace Presenter.Robot
             return _robotModel.Direction switch
             {
                 RobotDirection.Forward => new Position(0, 1),
+                RobotDirection.Left => new Position(1, 0),
                 RobotDirection.Backward => new Position(0, -1),
-                RobotDirection.Left => new Position(-1, 0),
-                RobotDirection.Right => new Position(1, 0),
+                RobotDirection.Right => new Position(-1, 0),
 
                 // just for fix rider warning
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
 
-        public IEnumerator Move(Position newPosition, Vector3 newWorldPosition, int tileHeight,
-            double positionThreshold)
+        public IEnumerator Move(Position newPosition, Vector3 newWorldPosition, int tileHeight)
         {
             var targetWorldPos = CreatePosition(newWorldPosition, tileHeight, _robotModel.RobotHeight);
             
-            while ((_robotModel.RobotGameObject.transform.position - newWorldPosition).magnitude > positionThreshold)
+            
+            float t = 0f;
+            float moveDuration = Mathf.Abs(90f / lerpPosSpeed);
+
+            while (t < moveDuration)
             {
-                print((_robotModel.RobotGameObject.transform.position - newWorldPosition).magnitude);
-
                 var a = _robotModel.CurrentWorldPosition;
-                LerpPosition(a, targetWorldPos, lerpTime);
+                LerpPosition(a, targetWorldPos, t / moveDuration);
 
+                t += Time.deltaTime;
                 yield return new WaitForFixedUpdate();
             }
 
             FixPosition(targetWorldPos, newPosition);
             yield return new WaitForFixedUpdate();
 
-            print("done");
-            
-            
             
             Vector3 CreatePosition(Vector3 pos, int tHeight, float rHeight) =>
                 new Vector3(pos.x, tHeight + rHeight, pos.z);
         }
         
-        public IEnumerator Jump(Position newPosition, Vector3 newWorldPosition, int tileHeight,
-            double positionThreshold)
+        public IEnumerator Rotate(RobotDirection direction)
         {
-            var targetWorldPos = CreatePosition(newWorldPosition, tileHeight, _robotModel.RobotHeight);
-            
-            while ((_robotModel.RobotGameObject.transform.position - newWorldPosition).magnitude < positionThreshold)
+            Vector3 startRotation = _robotModel.RobotGameObject.rotation.eulerAngles;
+            float targetRotationY = startRotation.y + (direction == RobotDirection.Right ? 90f : -90f);
+            Vector3 targetRotation = new Vector3(0, targetRotationY, 0);
+
+            float t = 0f;
+            float rotationDuration = Mathf.Abs(90f / lerpRotSpeed);
+
+            while (t < rotationDuration)
             {
-                print((_robotModel.RobotGameObject.transform.position - newWorldPosition).magnitude);
+                EulerRotation(startRotation, targetRotation, t / rotationDuration);
 
-                var a = _robotModel.CurrentWorldPosition;
-                LerpPosition(a, targetWorldPos, lerpTime);
-
+                t += Time.deltaTime;
                 yield return new WaitForFixedUpdate();
             }
 
-            FixPosition(targetWorldPos, newPosition);
+            FixRotation(targetRotation, direction);
             yield return new WaitForFixedUpdate();
+        }
 
-            print("done");
-            
-            
-            
-            Vector3 CreatePosition(Vector3 pos, int tHeight, float rHeight) =>
-                new Vector3(pos.x, tHeight + rHeight, pos.z);
+        private void EulerRotation(Vector3 startRotation, Vector3 targetRotation, float rotationDuration)
+        {
+            Vector3 currentRotation = Vector3.Lerp(startRotation, targetRotation, rotationDuration);
+            _robotModel.RobotGameObject.rotation = Quaternion.Euler(currentRotation);
         }
 
 
@@ -115,5 +119,17 @@ namespace Presenter.Robot
             _robotModel.RobotGameObject.transform.position = targetWorldPos;
         }
 
+        private void FixRotation(Vector3 targetAngles, RobotDirection dir)
+        {
+            transform.eulerAngles = targetAngles;
+            _robotModel.Direction = CalculateCurrentDirection(dir);
+
+
+            RobotDirection CalculateCurrentDirection(RobotDirection rotedToDirection)
+            {
+                int directionNum = rotedToDirection == RobotDirection.Left ? 3 : 1;
+                return (RobotDirection)((int)(_robotModel.Direction + directionNum) % 4);
+            }
+        }
     }
 }

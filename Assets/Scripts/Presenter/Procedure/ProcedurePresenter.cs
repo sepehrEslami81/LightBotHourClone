@@ -14,21 +14,19 @@ namespace Presenter.Procedure
         private IEnumerator Start()
         {
             CreateProcedures(proceduresCount);
-
+            
             var robot = GameObject.FindWithTag("Player");
             var forwardCommand = robot.GetComponent<ForwardWalkCommandPresenter>();
             var jumpCommand = robot.GetComponent<JumpCommandPresenter>();
             var lightStateCommand = robot.GetComponent<ChangeLightStateCommandPresenter>();
+            var rotateLeftCommand = robot.GetComponent<RotateLeftCommandPresenter>();
+            var rotateRightCommand = robot.GetComponent<RotateRightCommandPresenter>();
 
-            // _procedures[0].AddCommand(jumpCommand);
-            // _procedures[0].AddCommand(jumpCommand);
-            // _procedures[0].AddCommand(jumpCommand);
+            _procedures[0].AddCommand(rotateLeftCommand);
             _procedures[0].AddCommand(forwardCommand);
-            _procedures[0].AddCommand(forwardCommand);
-            _procedures[0].AddCommand(forwardCommand);
-            _procedures[0].AddCommand(lightStateCommand);
 
-            yield return new WaitForSeconds(.5f);
+
+            yield return new WaitForSeconds(1f);
             StartCoroutine(RunProcedure());
         }
 
