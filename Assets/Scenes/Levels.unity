@@ -239,6 +239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelModels:
   - {fileID: 11400000, guid: d0807c1d2e799594d9766e5de3208f40, type: 2}
+  - {fileID: 11400000, guid: a40446e8975650e478567208845991df, type: 2}
   levelCardPrefab: {fileID: 7635588911694917640, guid: cf750326764aead49b3c6d06890d49df, type: 3}
 --- !u!1 &632094958
 GameObject:
