@@ -110,20 +110,7 @@ namespace Presenter.Robot
         {
             var angel = DirectionToAngel(_robotModel.StartDirection);
             FixRotation(angel, _robotModel.StartDirection);
-        }
-
-        private Vector3 DirectionToAngel(RobotDirection dir)
-        {
-            return dir switch
-            {
-                RobotDirection.Backward => new Vector3(0, 180, 0),
-                RobotDirection.Forward => new Vector3(0, 0, 0),
-                RobotDirection.Left => new Vector3(0, -90, 0),
-                RobotDirection.Right => new Vector3(0, 90, 0),
-                
-                // remove rider warning 
-                _ => throw new ArgumentOutOfRangeException(nameof(dir), dir, null)
-            };
+            _robotModel.Direction = _robotModel.StartDirection;
         }
 
         private void ResetPosition()
@@ -164,12 +151,27 @@ namespace Presenter.Robot
             transform.eulerAngles = targetAngles;
             _robotModel.Direction = CalculateCurrentDirection(dir);
 
-
             RobotDirection CalculateCurrentDirection(RobotDirection rotedToDirection)
             {
                 int directionNum = (int)rotedToDirection;
                 return (RobotDirection)((int)(_robotModel.Direction + directionNum) % 4);
             }
         }
+        
+        
+        private Vector3 DirectionToAngel(RobotDirection dir)
+        {
+            return dir switch
+            {
+                RobotDirection.Backward => new Vector3(0, 180, 0),
+                RobotDirection.Forward => new Vector3(0, 0, 0),
+                RobotDirection.Left => new Vector3(0, -90, 0),
+                RobotDirection.Right => new Vector3(0, 90, 0),
+                
+                // remove rider warning 
+                _ => throw new ArgumentOutOfRangeException(nameof(dir), dir, null)
+            };
+        }
+
     }
 }
