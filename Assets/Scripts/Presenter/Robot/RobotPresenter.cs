@@ -43,33 +43,6 @@ namespace Presenter.Robot
             };
         }
 
-
-        public void FixPosition(Vector3 targetWorldPos, Position targetPos)
-        {
-            _robotModel.Position = targetPos;
-
-            var currentTile = TileMapPresenter.GetTileByPosition(targetPos);
-            
-            var y = CalculateYAxis(currentTile);
-            var worldPos = new Vector3(targetWorldPos.x, y, targetWorldPos.z);
-            _robotModel.RobotGameObject.transform.position = worldPos;
-
-            float CalculateYAxis(CubeTileModel model) => _robotModel.RobotHeight + model.Height;
-        }
-
-        public void FixRotation(Vector3 targetAngles, RobotDirection dir)
-        {
-            transform.eulerAngles = targetAngles;
-            _robotModel.Direction = CalculateCurrentDirection(dir);
-
-
-            RobotDirection CalculateCurrentDirection(RobotDirection rotedToDirection)
-            {
-                int directionNum = rotedToDirection == RobotDirection.Left ? 3 : 1;
-                return (RobotDirection)((int)(_robotModel.Direction + directionNum) % 4);
-            }
-        }
-
         public IEnumerator Move(Position newPosition, Vector3 newWorldPosition, int tileHeight)
         {
             var targetWorldPos = CreatePosition(newWorldPosition, tileHeight, _robotModel.RobotHeight);
@@ -98,7 +71,7 @@ namespace Presenter.Robot
         public IEnumerator Rotate(RobotDirection direction)
         {
             Vector3 startRotation = _robotModel.RobotGameObject.rotation.eulerAngles;
-            float targetRotationY = startRotation.y + (direction == RobotDirection.Right ? 90f : -90f);
+            float targetRotationY = startRotation.y + DirectionToAngel(direction).y;
             Vector3 targetRotation = new Vector3(0, targetRotationY, 0);
 
             float t = 0f;
@@ -116,6 +89,49 @@ namespace Presenter.Robot
             yield return new WaitForFixedUpdate();
         }
 
+        public void SetDefaultPos(Position pos)
+        {
+            _robotModel.StartPosition = pos;
+        }
+
+        public void SetDefaultDirection(RobotDirection dir)
+        {
+            _robotModel.StartDirection = dir;
+        }
+
+        public void ResetRobot()
+        {
+            ResetPosition();
+            ResetRotation();
+        }
+
+
+        private void ResetRotation()
+        {
+            var angel = DirectionToAngel(_robotModel.StartDirection);
+            FixRotation(angel, _robotModel.StartDirection);
+        }
+
+        private Vector3 DirectionToAngel(RobotDirection dir)
+        {
+            return dir switch
+            {
+                RobotDirection.Backward => new Vector3(0, 180, 0),
+                RobotDirection.Forward => new Vector3(0, 0, 0),
+                RobotDirection.Left => new Vector3(0, -90, 0),
+                RobotDirection.Right => new Vector3(0, 90, 0),
+                
+                // remove rider warning 
+                _ => throw new ArgumentOutOfRangeException(nameof(dir), dir, null)
+            };
+        }
+
+        private void ResetPosition()
+        {
+            var tile = TileMapPresenter.GetTileByPosition(_robotModel.StartPosition);
+            FixPosition(tile.WorldPosition, tile.Position);
+        }
+
         private void EulerRotation(Vector3 startRotation, Vector3 targetRotation, float rotationDuration)
         {
             Vector3 currentRotation = Vector3.Lerp(startRotation, targetRotation, rotationDuration);
@@ -127,6 +143,33 @@ namespace Presenter.Robot
         {
             var lerp = Vector3.Lerp(a, b, t);
             _robotModel.RobotGameObject.transform.position = lerp;
+        }
+
+
+        private void FixPosition(Vector3 targetWorldPos, Position targetPos)
+        {
+            _robotModel.Position = targetPos;
+
+            var currentTile = TileMapPresenter.GetTileByPosition(targetPos);
+
+            var y = CalculateYAxis(currentTile);
+            var worldPos = new Vector3(targetWorldPos.x, y, targetWorldPos.z);
+            _robotModel.RobotGameObject.transform.position = worldPos;
+
+            float CalculateYAxis(CubeTileModel model) => _robotModel.RobotHeight + model.Height;
+        }
+
+        private void FixRotation(Vector3 targetAngles, RobotDirection dir)
+        {
+            transform.eulerAngles = targetAngles;
+            _robotModel.Direction = CalculateCurrentDirection(dir);
+
+
+            RobotDirection CalculateCurrentDirection(RobotDirection rotedToDirection)
+            {
+                int directionNum = (int)rotedToDirection;
+                return (RobotDirection)((int)(_robotModel.Direction + directionNum) % 4);
+            }
         }
     }
 }

@@ -30,5 +30,6 @@ namespace Model.Level
         public CubeTileModel[] CubeTileModels => cubeTileModels;
         public IEnumerable<CommandNames> Commands => commands;
         public IEnumerable<ProcedureModel> Procedures => procedures;
+        public RobotDirection StartRobotDirection => startRobotDirection;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Presenter.Procedure;
+using Presenter.Robot;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,8 @@ namespace Presenter.Ui
 {
     public class ButtonsUiPresenter : MonoBehaviour
     {
+        [Header("Script references")]
+        [SerializeField] private RobotPresenter robotPresenter;
         [SerializeField] private ProcedurePresenter procedurePresenter;
         
         [Header("run/stop button references")]
@@ -34,6 +37,7 @@ namespace Presenter.Ui
         private void Stop()
         {
             procedurePresenter.StopProgram();
+            robotPresenter.ResetRobot();
             runStopButtonImage.sprite = runButtonSprite;
         }
     }

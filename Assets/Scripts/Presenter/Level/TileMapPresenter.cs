@@ -32,15 +32,22 @@ namespace Presenter.Level
             _instance = null;
         }
 
-        public static CubeTileModel StartTile => _instance._level.CubeTileModels.First(p => p.IsStartPoint);
-
         public static CubeTileModel GetTileByPosition(Position position) =>
             _instance._level.CubeTileModels.FirstOrDefault(p => p.Position == position);
 
 
         internal static void SetLevel(LevelModel levelModel) => _instance._level = levelModel;
 
-        internal static void BuildMap() => _instance.CreateTiles();
+        internal static void BuildMap()
+        {
+            _instance.SetRobotDir();
+            _instance.CreateTiles();
+        }
+
+        private void SetRobotDir()
+        {
+            _robot.SetDefaultDirection(_level.StartRobotDirection);
+        }
         
         private void CreateTiles()
         {
@@ -53,9 +60,10 @@ namespace Presenter.Level
             }
         }
 
-        private void SetRobotAtStartPosition(CubeTileModel tileModel)
+        private void SetRobotAtStartPosition(CubeTileModel startTile)
         {
-            _robot.FixPosition(tileModel.WorldPosition, tileModel.Position);
+            _robot.SetDefaultPos(startTile.Position);
+            _robot.ResetRobot();
         }
 
         private void CreateCubeTileObject(CubeTileModel levelCubeTile)
