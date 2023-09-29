@@ -42,8 +42,8 @@ namespace Presenter.Level
 
             print("loaded successfully.");
             
+            yield return new WaitForSeconds(.3f);
             LoadLevelByModel(model);
-            yield return new WaitForFixedUpdate();
         }
 
         private void LoadLevelByModel(LevelModel level)
