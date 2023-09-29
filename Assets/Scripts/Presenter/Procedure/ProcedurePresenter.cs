@@ -32,16 +32,18 @@ namespace Presenter.Procedure
             _procedures.Clear();
         }
 
-        public static void CreateProcedure(ProcedureModel model)
+        public static void CreateProcedure(ProcedureModel model, int index)
         {
             Debug.Log($"load {model.Name} procedure");
 
             _instance.CreateNewProc(model);
-            _instance.proceduresUiPresenter.NewProcedurePanel(model);
+            _instance.proceduresUiPresenter.NewProcedurePanel(model, index);
         }
 
-        public static void SelectProcedureById(int index, bool isSelected)
+        public static void SelectProcedureById(int index, bool isSelected = true)
         {
+            _instance.proceduresUiPresenter.SelectProcedureById(_instance._selectedProcedure, false);
+            _instance._selectedProcedure = index;
             _instance.proceduresUiPresenter.SelectProcedureById(index, isSelected);
         }
 
@@ -61,11 +63,12 @@ namespace Presenter.Procedure
         }
 
         public Procedure GetProcedureByIndex(int index) => _procedures[index];
-
+        
 
         private OprationCommand GetCommandByName(CommandNames commandName) =>
             commands.First(c => c.CommandName == commandName);
-
+        
+        
         private IEnumerator RunAllProcedures()
         {
             return _procedures.Select(procedure => procedure.RunProcedure()).GetEnumerator();

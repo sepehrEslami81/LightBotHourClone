@@ -30,13 +30,14 @@ namespace Presenter.Ui
             _procedures[index].IsSelected = isSelected;
         }
         
-        public void NewProcedurePanel(ProcedureModel model)
+        public void NewProcedurePanel(ProcedureModel model, int index)
         {
             var procPanel = Instantiate(procedurePrefab, rootPanel.transform);
 
             if (procPanel.TryGetComponent(out ProcedurePanelUiPresenter presenter))
             {
                 presenter.SetProcedureLabel(model.Name);
+                presenter.SetProcedureIndex(index);
                 
                 _procedures.Add(presenter);
                 
@@ -49,7 +50,7 @@ namespace Presenter.Ui
 
         public void AddCommandToPanel(int index, CommandNames commandName)
         {
-            _procedures[index].AddCommand(commandName, index);
+            _procedures[index].AddCommand(commandName);
         }
 
         public void RemoveCommandByIndex(int procIndex, int commandIndex)

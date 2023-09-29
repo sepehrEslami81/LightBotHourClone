@@ -31,6 +31,7 @@ namespace Presenter.Ui
         private void Run()
         {
             robotPresenter.ResetRobot();
+            // todo: reset all lighted cubes
             procedurePresenter.StartProgram();
             runStopButtonImage.sprite = stopButtonSprite;
         }

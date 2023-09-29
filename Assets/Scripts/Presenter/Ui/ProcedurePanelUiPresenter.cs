@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Model.Commands;
+using Presenter.Procedure;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,7 @@ namespace Presenter.Ui
 
         [SerializeField] private Color selectedColor;
 
+        private int _procIndex;
         private bool _isSelected;
         private int _countOfCommands;
         private Image _procHolderImage;
@@ -52,7 +54,17 @@ namespace Presenter.Ui
             procedureLabel.text = label;
         }
 
-        internal void AddCommand(CommandNames command, int procedureIndex)
+        internal void SetProcedureIndex(int index)
+        {
+            _procIndex = index;
+        }
+
+        public void SelectProcedure()
+        {
+            ProcedurePresenter.SelectProcedureById(_procIndex);
+        }
+
+        internal void AddCommand(CommandNames command)
         {
             var btn = CreateButton();
             btn.UpdateButtonUi(command, CommandButtonPlace.InProcedure);
@@ -60,7 +72,7 @@ namespace Presenter.Ui
             var index = _countOfCommands++; // index of object
             _buttons.Add(index, btn);
 
-            btn.procedureIndex = procedureIndex;
+            btn.procedureIndex = _procIndex;
             btn.commandIndexInProcedure = index;
 
             CommandButtonPresenter CreateButton() =>

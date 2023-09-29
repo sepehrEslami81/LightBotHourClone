@@ -46,9 +46,10 @@ namespace Presenter.Level
 
         private void LoadProcedures()
         {
-            foreach (var procModel in level.Procedures)
+            for (int i = 0; i < level.Procedures.Count; i++)
             {
-                ProcedurePresenter.CreateProcedure(procModel);
+                var proc = level.Procedures[i]; 
+                ProcedurePresenter.CreateProcedure(proc, i);
             }
             
             ProcedurePresenter.SelectProcedureById(0, true);
