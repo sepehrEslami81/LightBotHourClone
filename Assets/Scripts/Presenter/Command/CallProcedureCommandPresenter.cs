@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Presenter.Command
 {
-    public class CallProcedureCommandPresenter : OprationCommand
+    public class CallProcedureCommandPresenter : OperationCommand
     {
         [SerializeField] private int procedureIndex = 1; // use index 0 for main proc
         

@@ -9,16 +9,16 @@ namespace Presenter.Procedure
     public class Procedure
     {
         private readonly ProcedureModel _model;
-        private readonly Dictionary<int, OprationCommand> _commands;
+        private readonly Dictionary<int, OperationCommand> _commands;
 
         private int _lastGeneratedId;
 
-        private IEnumerable<OprationCommand> Commands => _commands.Select(c => c.Value);
+        private IEnumerable<OperationCommand> Commands => _commands.Select(c => c.Value);
 
         public Procedure(ProcedureModel model)
         {
             _model = new ProcedureModel();
-            _commands = new Dictionary<int, OprationCommand>();
+            _commands = new Dictionary<int, OperationCommand>();
         }
         
         public IEnumerator RunProcedure()
@@ -29,13 +29,13 @@ namespace Presenter.Procedure
             }
         }
 
-        internal bool AddCommand(OprationCommand oprationCommand)
+        internal bool AddCommand(OperationCommand operationCommand)
         {
             if (_model.MaximumCommands > 0 && _commands.Count >= _model.MaximumCommands)
                 return false;
 
             int index = _lastGeneratedId++;
-            _commands.Add(index, oprationCommand);
+            _commands.Add(index, operationCommand);
             return true;
         }
 

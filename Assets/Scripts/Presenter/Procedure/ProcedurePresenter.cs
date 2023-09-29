@@ -11,7 +11,7 @@ namespace Presenter.Procedure
 {
     public class ProcedurePresenter : MonoBehaviour
     {
-        [SerializeField] private List<OprationCommand> commands;
+        [SerializeField] private List<OperationCommand> commands;
         [SerializeField] private ProceduresUiPresenter proceduresUiPresenter;
 
         private int _selectedProcedure = 0;
@@ -65,7 +65,7 @@ namespace Presenter.Procedure
         public Procedure GetProcedureByIndex(int index) => _procedures[index];
         
 
-        private OprationCommand GetCommandByName(CommandNames commandName) =>
+        private OperationCommand GetCommandByName(CommandNames commandName) =>
             commands.First(c => c.CommandName == commandName);
         
         
