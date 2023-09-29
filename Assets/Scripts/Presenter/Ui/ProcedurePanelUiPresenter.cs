@@ -48,7 +48,7 @@ namespace Presenter.Ui
             procedureLabel.text = label;
         }
 
-        public int AddCommand(CommandNames command, int procedureIndex)
+        public void AddCommand(CommandNames command, int procedureIndex)
         {
             var btn = CreateButton();
             btn.UpdateButtonUi(command, CommandButtonPlace.InProcedure);
@@ -57,9 +57,6 @@ namespace Presenter.Ui
 
             btn.procedureIndex = procedureIndex;
             btn.commandIndexInProcedure = index;
-
-            return index;
-
 
             CommandButtonPresenter CreateButton() =>
                 CommandButtonPresenter.CreateCommandButton(commandButtonPrefab, commandsHolder);

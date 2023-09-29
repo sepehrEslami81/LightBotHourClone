@@ -92,8 +92,7 @@ namespace Presenter.Procedure
 
             if(result)
             {
-                var commandPanelUiIndex = proceduresUiPresenter.AddCommandToPanel(_selectedProcedure, commandName);
-                
+                proceduresUiPresenter.AddCommandToPanel(_selectedProcedure, commandName);
             }
 
             return result;
