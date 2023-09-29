@@ -1,7 +1,6 @@
 ﻿using System;
 using Model.Commands;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Presenter.Ui
 {
