@@ -47,6 +47,9 @@ namespace Presenter.Procedure
 
         public static bool AddNewCommand(CommandNames commandName) => _instance.AddCommand(commandName);
 
+        public static void RemoveCommand(int procIndex, int commandIndex) =>
+            _instance.RemoveCommandByIndex(procIndex, commandIndex);
+
         public void StartProgram()
         {
             StartCoroutine(RunAllProcedures());
@@ -96,6 +99,13 @@ namespace Presenter.Procedure
             }
 
             return result;
+        }
+
+        private void RemoveCommandByIndex(int procIndex, int commandIndex)
+        {
+            var selectedProc = _procedures[procIndex];
+            selectedProc.RemoveCommand(commandIndex);
+            proceduresUiPresenter.RemoveCommandByIndex(procIndex, commandIndex);
         }
 
     }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Model.Level;
 using Presenter.Command;
 
@@ -6,30 +7,32 @@ namespace Presenter.Procedure
 {
     public class Procedure
     {
-        private readonly List<Command.OprationCommand> _commands;
         private readonly ProcedureModel _model;
+        private readonly Dictionary<int, OprationCommand> _commands;
 
-        public IEnumerable<Command.OprationCommand> Commands => _commands;
-        
+        private int _lastGeneratedId;
+
+        public IEnumerable<OprationCommand> Commands => _commands.Select(c => c.Value);
+
         public Procedure(ProcedureModel model)
         {
             _model = new ProcedureModel();
-            _commands = new List<Command.OprationCommand>();
+            _commands = new Dictionary<int, OprationCommand>();
         }
 
-        internal bool AddCommand(Command.OprationCommand oprationCommand)
+        internal bool AddCommand(OprationCommand oprationCommand)
         {
             if (_model.MaximumCommands > 0 && _commands.Count >= _model.MaximumCommands)
                 return false;
-            
-            _commands.Add(oprationCommand);
+
+            int index = _lastGeneratedId++;
+            _commands.Add(index, oprationCommand);
             return true;
         }
 
-        internal void RemoveCommand(Command.OprationCommand oprationCommand)
+        internal void RemoveCommand(int index)
         {
-            _commands.Remove(oprationCommand);
+            _commands.Remove(index);
         }
-        
     }
 }

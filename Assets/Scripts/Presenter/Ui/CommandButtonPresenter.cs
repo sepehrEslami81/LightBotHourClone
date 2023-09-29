@@ -76,6 +76,7 @@ namespace Presenter.Ui
         private void RemoveCommandFromSelectedProc()
         {
             print($"try remove from selected proc");
+            ProcedurePresenter.RemoveCommand(procedureIndex, commandIndexInProcedure);
         }
     }
 }

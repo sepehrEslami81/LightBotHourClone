@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Model.Commands;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,6 +21,7 @@ namespace Presenter.Ui
         private bool _isSelected;
         private int _countOfCommands;
         private Image _procHolderImage;
+        private Dictionary<int, CommandButtonPresenter> _buttons;
 
         public bool IsSelected
         {
@@ -41,25 +43,36 @@ namespace Presenter.Ui
             {
                 throw new NullReferenceException("failed to get image");
             }
+
+            _buttons = new Dictionary<int, CommandButtonPresenter>();
         }
 
-        public void SetProcedureLabel(string label)
+        internal void SetProcedureLabel(string label)
         {
             procedureLabel.text = label;
         }
 
-        public void AddCommand(CommandNames command, int procedureIndex)
+        internal void AddCommand(CommandNames command, int procedureIndex)
         {
             var btn = CreateButton();
             btn.UpdateButtonUi(command, CommandButtonPlace.InProcedure);
 
             var index = _countOfCommands++; // index of object
+            _buttons.Add(index, btn);
 
             btn.procedureIndex = procedureIndex;
             btn.commandIndexInProcedure = index;
 
             CommandButtonPresenter CreateButton() =>
                 CommandButtonPresenter.CreateCommandButton(commandButtonPrefab, commandsHolder);
+        }
+
+        internal void RemoveCommand(int index)
+        {
+            var btn = _buttons[index].gameObject;
+            Destroy(btn);
+            
+            _buttons.Remove(index);
         }
     }
 }

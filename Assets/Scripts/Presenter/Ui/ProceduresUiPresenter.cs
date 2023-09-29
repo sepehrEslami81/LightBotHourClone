@@ -51,5 +51,10 @@ namespace Presenter.Ui
         {
             _procedures[index].AddCommand(commandName, index);
         }
+
+        public void RemoveCommandByIndex(int procIndex, int commandIndex)
+        {
+            _procedures[procIndex].RemoveCommand(commandIndex);
+        }
     }
 }
