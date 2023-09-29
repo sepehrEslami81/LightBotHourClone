@@ -54,7 +54,7 @@ namespace Presenter.Procedure
 
         public void StartProgram()
         {
-            StartCoroutine(RunAllProcedures());
+            StartCoroutine(RunMainProc());
         }
 
         public void StopProgram()
@@ -69,9 +69,9 @@ namespace Presenter.Procedure
             commands.First(c => c.CommandName == commandName);
         
         
-        private IEnumerator RunAllProcedures()
+        private IEnumerator RunMainProc()
         {
-            return _procedures.Select(procedure => procedure.RunProcedure()).GetEnumerator();
+            return _procedures[0].RunProcedure();
         }
 
         private void CreateNewProc(ProcedureModel model)
