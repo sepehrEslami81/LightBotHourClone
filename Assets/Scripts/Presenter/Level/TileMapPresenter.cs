@@ -36,6 +36,15 @@ namespace Presenter.Level
             _instance._level.CubeTileModels.FirstOrDefault(p => p.Position == position);
 
 
+        public void ResetAllLightCubes()
+        {
+            var lightCubeTileModels = _level.CubeTileModels.Where(c => c.IsLightTile);
+            foreach (var lightCubeTileModel in lightCubeTileModels)
+            {
+                lightCubeTileModel.CubeTilePresenter.ChangeTileStatus(CubeType.TurnedOffTile);
+            }
+        }
+
         internal static void SetLevel(LevelModel levelModel) => _instance._level = levelModel;
 
         internal static void BuildMap()
@@ -70,7 +79,7 @@ namespace Presenter.Level
         {
             var instantiatedObject = CreateCubeTile(parent: transform);
             instantiatedObject.transform.localScale = CalcTileScale(levelCubeTile);
-            levelCubeTile.CubeTileGameObject = instantiatedObject; 
+            levelCubeTile.CubeTilePresenter = instantiatedObject.GetComponent<CubeTilePresenter>();
 
             if (levelCubeTile.IsLightTile)
             {

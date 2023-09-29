@@ -1,4 +1,5 @@
 ﻿using System;
+using Presenter.Cube;
 using UnityEngine;
 
 namespace Model.Level
@@ -17,6 +18,7 @@ namespace Model.Level
         public bool IsStartPoint => isStartPoint;
         public Position Position => position;
 
-        public GameObject CubeTileGameObject { get; set; }
+        // public GameObject CubeTileGameObject { get; set; }
+        public CubeTilePresenter CubeTilePresenter { get; set; }
     }
 }

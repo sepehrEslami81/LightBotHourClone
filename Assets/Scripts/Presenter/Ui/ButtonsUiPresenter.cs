@@ -1,4 +1,5 @@
-﻿using Presenter.Procedure;
+﻿using Presenter.Level;
+using Presenter.Procedure;
 using Presenter.Robot;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +10,9 @@ namespace Presenter.Ui
     {
         [Header("Script references")]
         [SerializeField] private RobotPresenter robotPresenter;
+        [SerializeField] private TileMapPresenter tileMapPresenter;
         [SerializeField] private ProcedurePresenter procedurePresenter;
+        [SerializeField] private CompleteLevelUiPresenter levelUiPresenter;
         
         [Header("run/stop button references")]
         [SerializeField] private Sprite runButtonSprite;
@@ -23,17 +26,26 @@ namespace Presenter.Ui
             _isRunning = !_isRunning;
             
             if(_isRunning)
-                Run();
+                ResetAndRun();
             else
                 Stop();
         }
 
-        private void Run()
+        private void ResetAndRun()
         {
+            ResetLightCubes();
+            
             robotPresenter.ResetRobot();
-            // todo: reset all lighted cubes
             procedurePresenter.StartProgram();
+            
             runStopButtonImage.sprite = stopButtonSprite;
+        }
+
+        private void ResetLightCubes()
+        {
+            levelUiPresenter.CountOfTurnedOnLightCubes = 0;
+            levelUiPresenter.HidePanel();
+            tileMapPresenter.ResetAllLightCubes();
         }
         
         private void Stop()

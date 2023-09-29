@@ -33,17 +33,11 @@ namespace Presenter.Command
                 yield break;
             }
 
-            if (!robotTile.CubeTileGameObject.TryGetComponent(out CubeTilePresenter presenter))
-            {
-                Debug.LogError("Cube presenter not found");
-                yield break;
-            }
-
-            var type = presenter.Type == CubeType.TurnedOffTile
+            var type = robotTile.CubeTilePresenter.Type == CubeType.TurnedOffTile
                 ? CubeType.TurnedOnTile
                 : CubeType.TurnedOffTile;
 
-            presenter.ChangeTileStatus(type);
+            robotTile.CubeTilePresenter.ChangeTileStatus(type);
 
             if (type == CubeType.TurnedOnTile)
                 levelUiPresenter.CountOfTurnedOnLightCubes++;
