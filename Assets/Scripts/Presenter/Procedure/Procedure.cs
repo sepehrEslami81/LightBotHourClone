@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Model.Level;
 using Presenter.Command;
@@ -12,12 +13,20 @@ namespace Presenter.Procedure
 
         private int _lastGeneratedId;
 
-        public IEnumerable<OprationCommand> Commands => _commands.Select(c => c.Value);
+        private IEnumerable<OprationCommand> Commands => _commands.Select(c => c.Value);
 
         public Procedure(ProcedureModel model)
         {
             _model = new ProcedureModel();
             _commands = new Dictionary<int, OprationCommand>();
+        }
+        
+        public IEnumerator RunProcedure()
+        {
+            foreach (var command in Commands)
+            {
+                yield return command.Execute();
+            }
         }
 
         internal bool AddCommand(OprationCommand oprationCommand)

@@ -282,7 +282,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rootPanel: {fileID: 384999584}
   commandButtonPrefab: {fileID: 5261607318473101997, guid: 65fecfc0919db024489999aaf52fe4bb, type: 3}
-  procedurePresenter: {fileID: 1267378520}
 --- !u!114 &384999589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,6 +546,7 @@ GameObject:
   - component: {fileID: 1267378524}
   - component: {fileID: 1267378523}
   - component: {fileID: 1267378522}
+  - component: {fileID: 1267378527}
   m_Layer: 0
   m_Name: Procedures
   m_TagString: Untagged
@@ -572,6 +572,7 @@ MonoBehaviour:
   - {fileID: 1267378524}
   - {fileID: 1267378523}
   - {fileID: 1267378522}
+  - {fileID: 1267378527}
   proceduresUiPresenter: {fileID: 2118002504}
 --- !u!4 &1267378521
 Transform:
@@ -600,7 +601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 952bcf959fdd48dc8c3c58ca1eb33bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  commandName: 5
+  commandName: 4
   robotModel: {fileID: 6621552338611026779}
   delayTime: 0.4
 --- !u!114 &1267378523
@@ -615,7 +616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553f16a1db4444ccafdbbe7fb59923cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  commandName: 3
+  commandName: 2
   robotPresenter: {fileID: 1811054033}
 --- !u!114 &1267378524
 MonoBehaviour:
@@ -629,7 +630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 226ea4800294428f84d0d57024a2f36a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  commandName: 2
+  commandName: 1
   robotPresenter: {fileID: 1811054033}
 --- !u!114 &1267378525
 MonoBehaviour:
@@ -643,7 +644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b3d6f3693314241a988a3dd0cae0ffe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  commandName: 4
+  commandName: 3
   robotModel: {fileID: 6621552338611026779}
   robotPresenter: {fileID: 1811054033}
 --- !u!114 &1267378526
@@ -658,9 +659,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd0089fc3624424af684dc116026274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  commandName: 1
+  commandName: 0
   robotModel: {fileID: 6621552338611026779}
   robotPresenter: {fileID: 1811054033}
+--- !u!114 &1267378527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267378519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c33891d067fe44b29613973e184b423e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commandName: 5
+  procedureIndex: 1
+  procedurePresenter: {fileID: 1267378520}
 --- !u!1 &1288627771
 GameObject:
   m_ObjectHideFlags: 0

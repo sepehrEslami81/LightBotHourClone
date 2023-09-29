@@ -36,8 +36,8 @@ namespace Presenter.Procedure
         {
             Debug.Log($"load {model.Name} procedure");
 
-           _instance.CreateNewProc(model);
-           _instance.proceduresUiPresenter.NewProcedurePanel(model);
+            _instance.CreateNewProc(model);
+            _instance.proceduresUiPresenter.NewProcedurePanel(model);
         }
 
         public static void SelectProcedureById(int index, bool isSelected)
@@ -59,23 +59,16 @@ namespace Presenter.Procedure
         {
             StopAllCoroutines();
         }
-        
+
+        public Procedure GetProcedureByIndex(int index) => _procedures[index];
+
+
         private OprationCommand GetCommandByName(CommandNames commandName) =>
             commands.First(c => c.CommandName == commandName);
 
-        private IEnumerator RunProcedure(Procedure proc)
-        {
-            var selectedCommands = proc.Commands;
-
-            foreach (var command in selectedCommands)
-            {
-                yield return command.Execute();
-            }
-        }
-        
         private IEnumerator RunAllProcedures()
         {
-            return _procedures.Select(RunProcedure).GetEnumerator();
+            return _procedures.Select(procedure => procedure.RunProcedure()).GetEnumerator();
         }
 
         private void CreateNewProc(ProcedureModel model)
@@ -83,22 +76,22 @@ namespace Presenter.Procedure
             var proc = new Procedure(model);
             _instance._procedures.Add(proc);
         }
-        
-        private Procedure GetSelectedProc() => _procedures[_selectedProcedure];
-        
-        
+
+
         private bool AddCommand(CommandNames commandName)
         {
             var command = GetCommandByName(commandName);
             var selectedProc = GetSelectedProc();
             var result = selectedProc.AddCommand(command);
 
-            if(result)
+            if (result)
             {
                 proceduresUiPresenter.AddCommandToPanel(_selectedProcedure, commandName);
             }
 
             return result;
+
+            Procedure GetSelectedProc() => GetProcedureByIndex(_selectedProcedure);
         }
 
         private void RemoveCommandByIndex(int procIndex, int commandIndex)
@@ -107,6 +100,5 @@ namespace Presenter.Procedure
             selectedProc.RemoveCommand(commandIndex);
             proceduresUiPresenter.RemoveCommandByIndex(procIndex, commandIndex);
         }
-
     }
 }
