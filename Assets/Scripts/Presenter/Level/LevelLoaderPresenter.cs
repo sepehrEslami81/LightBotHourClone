@@ -31,6 +31,22 @@ namespace Presenter.Level
             LoadTileMap();
             LoadProcedures();
             LoadUiElements();
+            SetCountOfLightCubes();
+        }
+
+        private void SetCountOfLightCubes()
+        {
+            var completeUiPresenter = FindObjectOfType<CompleteLevelUiPresenter>();
+            if (completeUiPresenter is null)
+            {
+                Debug.LogError("failed to get level complete presenter");
+                return;
+            }
+
+            completeUiPresenter.HidePanel();
+            completeUiPresenter.CountOfLightCubes = GetCountOfLightCubes();
+
+            int GetCountOfLightCubes() => level.CubeTileModels.Count(c => c.IsLightTile);
         }
 
         private void LoadUiElements()
