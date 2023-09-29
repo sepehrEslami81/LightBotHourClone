@@ -13,45 +13,41 @@ MonoBehaviour:
   m_Name: demo
   m_EditorClassIdentifier: 
   id: 0
+  startRobotDirection: 0
+  commands: 0100000002000000030000000400000005000000
   cubeTileModels:
   - isLightTile: 0
     isStartPoint: 1
-    worldPosition: {x: 0, y: 0, z: 0}
     position:
       x: 0
       y: 0
     height: 1
   - isLightTile: 0
     isStartPoint: 0
-    worldPosition: {x: 1, y: 0, z: 0}
     position:
       x: 1
       y: 0
     height: 1
   - isLightTile: 0
     isStartPoint: 0
-    worldPosition: {x: 2, y: 0, z: 0}
     position:
       x: 2
       y: 0
     height: 1
   - isLightTile: 0
     isStartPoint: 0
-    worldPosition: {x: 2, y: 0, z: -1}
     position:
       x: 2
       y: 1
     height: 1
   - isLightTile: 0
     isStartPoint: 0
-    worldPosition: {x: 2, y: 0, z: -2}
     position:
       x: 2
       y: 2
     height: 2
   - isLightTile: 1
     isStartPoint: 0
-    worldPosition: {x: 2, y: 0, z: -3}
     position:
       x: 2
       y: 3
