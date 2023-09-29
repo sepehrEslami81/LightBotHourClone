@@ -11,8 +11,9 @@ namespace Presenter.Robot
 {
     public class RobotPresenter : MonoBehaviour
     {
-        [Header("Lerp speed settings")]
-        [Range(1, 100), SerializeField] private float lerpPosSpeed = 60;
+        [Header("Lerp speed settings")] [Range(1, 100), SerializeField]
+        private float lerpPosSpeed = 60;
+
         [Range(1, 360), SerializeField] private float lerpRotSpeed = 60;
 
         private RobotModel _robotModel;
@@ -57,8 +58,8 @@ namespace Presenter.Robot
         public IEnumerator Move(Position newPosition, Vector3 newWorldPosition, int tileHeight)
         {
             var targetWorldPos = CreatePosition(newWorldPosition, tileHeight, _robotModel.RobotHeight);
-            
-            
+
+
             float t = 0f;
             float moveDuration = Mathf.Abs(90f / lerpPosSpeed);
 
@@ -74,11 +75,11 @@ namespace Presenter.Robot
             FixPosition(targetWorldPos, newPosition);
             yield return new WaitForFixedUpdate();
 
-            
+
             Vector3 CreatePosition(Vector3 pos, int tHeight, float rHeight) =>
                 new Vector3(pos.x, tHeight + rHeight, pos.z);
         }
-        
+
         public IEnumerator Rotate(RobotDirection direction)
         {
             Vector3 startRotation = _robotModel.RobotGameObject.rotation.eulerAngles;
