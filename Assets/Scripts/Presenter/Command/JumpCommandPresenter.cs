@@ -6,13 +6,13 @@ using UnityEngine;
 
 namespace Presenter.Command
 {
-    public class JumpCommandPresenter : MonoBehaviour, ICommand
+    public class JumpCommandPresenter : Command
     {
         [SerializeField] private RobotModel robotModel;
         [SerializeField] private RobotPresenter robotPresenter;
 
         
-        public IEnumerator Execute()
+        public override IEnumerator Execute()
         {
             Debug.Log("Exec: Execute jump");
 

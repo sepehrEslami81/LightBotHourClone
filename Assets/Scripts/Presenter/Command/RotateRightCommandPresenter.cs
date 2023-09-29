@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace Presenter.Command
 {
-    public class RotateRightCommandPresenter : MonoBehaviour, ICommand
+    public class RotateRightCommandPresenter : Command
     {
         [SerializeField] private RobotPresenter robotPresenter;
         
-        public IEnumerator Execute()
+        public override IEnumerator Execute()
         {
             Debug.Log("Exec: Rotate right");
             yield return robotPresenter.Rotate(RobotDirection.Right);

@@ -6,12 +6,12 @@ using UnityEngine;
 
 namespace Presenter.Command
 {
-    public class ChangeLightStateCommandPresenter : MonoBehaviour, ICommand
+    public class ChangeLightStateCommandPresenter : Command
     {
         [SerializeField] private RobotModel robotModel;
         [Range(0, 3f)] [SerializeField] private float delayTime = .2f;
 
-        public IEnumerator Execute()
+        public override IEnumerator Execute()
         {
             yield return new WaitForSeconds(delayTime);
 

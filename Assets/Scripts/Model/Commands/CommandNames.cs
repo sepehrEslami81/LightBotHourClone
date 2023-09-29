@@ -3,7 +3,7 @@
 namespace Model.Commands
 {
     [Serializable]
-    public enum CommandName
+    public enum CommandNames
     {
         MoveForward = 1,
         TurnLeft = 2,

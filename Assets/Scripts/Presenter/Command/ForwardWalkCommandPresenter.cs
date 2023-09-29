@@ -6,12 +6,12 @@ using UnityEngine;
 
 namespace Presenter.Command
 {
-    public class ForwardWalkCommandPresenter : MonoBehaviour, ICommand
+    public class ForwardWalkCommandPresenter : Command
     {
         [SerializeField] private RobotModel robotModel;
         [SerializeField] private RobotPresenter robotPresenter;
 
-        public IEnumerator Execute()
+        public override IEnumerator Execute()
         {
             var nextPosition = robotPresenter.GetNextTilePosByDirection();
             var tile = TileMapPresenter.GetTileByPosition(robotModel.Position + nextPosition);
