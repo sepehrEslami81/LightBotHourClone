@@ -65,17 +65,11 @@ namespace Presenter.Ui
 
         private void AddCommandToSelectedProc(CommandNames command)
         {
-            var result = ProcedurePresenter.AddNewCommand(command);
-            
-            if(result)
-                print($"try add {command.ToString()} to selected proc");
-            else
-                print("proc command limit reached.");
+            ProcedurePresenter.AddNewCommand(command);
         }
 
         private void RemoveCommandFromSelectedProc()
         {
-            print($"try remove from selected proc");
             ProcedurePresenter.SelectProcedureById(procedureIndex);
             ProcedurePresenter.RemoveCommand(procedureIndex, commandIndexInProcedure);
         }
