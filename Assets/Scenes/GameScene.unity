@@ -1221,6 +1221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf2d7d83df1a40fb9257fd238c185c91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  robotPresenter: {fileID: 1811054033}
   procedurePresenter: {fileID: 1267378520}
   runButtonSprite: {fileID: -1794085895, guid: b9059155ca57af84f85ec942f79cbd1a, type: 3}
   stopButtonSprite: {fileID: -1315700559, guid: b9059155ca57af84f85ec942f79cbd1a, type: 3}

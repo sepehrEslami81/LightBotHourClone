@@ -30,6 +30,7 @@ namespace Presenter.Ui
 
         private void Run()
         {
+            robotPresenter.ResetRobot();
             procedurePresenter.StartProgram();
             runStopButtonImage.sprite = stopButtonSprite;
         }
@@ -37,7 +38,6 @@ namespace Presenter.Ui
         private void Stop()
         {
             procedurePresenter.StopProgram();
-            robotPresenter.ResetRobot();
             runStopButtonImage.sprite = runButtonSprite;
         }
     }
