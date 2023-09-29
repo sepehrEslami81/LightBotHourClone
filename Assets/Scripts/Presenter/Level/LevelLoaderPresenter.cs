@@ -50,6 +50,8 @@ namespace Presenter.Level
             {
                 ProcedurePresenter.CreateProcedure(procModel);
             }
+            
+            ProcedurePresenter.SelectProcedureById(0, true);
         }
 
     }

@@ -4,6 +4,7 @@ using System.Linq;
 using Model.Commands;
 using Model.Level;
 using Presenter.Command;
+using Presenter.Ui;
 using UnityEngine;
 
 namespace Presenter.Procedure
@@ -11,6 +12,7 @@ namespace Presenter.Procedure
     public class ProcedurePresenter : MonoBehaviour
     {
         [SerializeField] private List<OprationCommand> commands;
+        [SerializeField] private ProceduresUiPresenter proceduresUiPresenter;
 
         private int _selectedProcedure = 0;
         private List<Procedure> _procedures;
@@ -34,8 +36,13 @@ namespace Presenter.Procedure
         {
             Debug.Log($"load {model.Name} procedure");
 
-            var proc = new Procedure(model);
-            _instance._procedures.Add(proc);
+           _instance.CreateNewProc(model);
+           _instance.proceduresUiPresenter.NewProcedurePanel(model);
+        }
+
+        public static void SelectProcedureById(int index, bool isSelected)
+        {
+            _instance.proceduresUiPresenter.SelectProcedureById(index, isSelected);
         }
 
         public bool AddNewCommand(CommandNames commandName)
@@ -75,7 +82,12 @@ namespace Presenter.Procedure
             return _procedures.Select(RunProcedure).GetEnumerator();
         }
 
-
+        private void CreateNewProc(ProcedureModel model)
+        {
+            var proc = new Procedure(model);
+            _instance._procedures.Add(proc);
+        }
+        
         private Procedure GetSelectedProc() => _procedures[_selectedProcedure];
     }
 }

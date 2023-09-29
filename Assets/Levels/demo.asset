@@ -15,6 +15,13 @@ MonoBehaviour:
   id: 0
   startRobotDirection: 0
   commands: 0100000002000000030000000400000005000000
+  procedures:
+  - name: main
+    maximumCommands: 0
+  - name: procedure 1
+    maximumCommands: 0
+  - name: procedure 2
+    maximumCommands: 0
   cubeTileModels:
   - isLightTile: 0
     isStartPoint: 1

@@ -280,7 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad22e818d0544e7fada50273e2672f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panelRoot: {fileID: 384999584}
+  rootPanel: {fileID: 384999584}
   commandButtonPrefab: {fileID: 5261607318473101997, guid: 65fecfc0919db024489999aaf52fe4bb, type: 3}
 --- !u!114 &384999589
 MonoBehaviour:
@@ -571,6 +571,7 @@ MonoBehaviour:
   - {fileID: 1267378524}
   - {fileID: 1267378523}
   - {fileID: 1267378522}
+  proceduresUiPresenter: {fileID: 2118002504}
 --- !u!4 &1267378521
 Transform:
   m_ObjectHideFlags: 0
@@ -1013,8 +1014,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146f7efa8392402485b7097b37a9d833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rootPanel: {fileID: 2118002499}
   procedurePrefab: {fileID: 5112708405544559111, guid: 1d4b6957e7bbf0344b5bc65e879b6f11, type: 3}
-  commandButtonPrefab: {fileID: 5261607318473101997, guid: 65fecfc0919db024489999aaf52fe4bb, type: 3}
 --- !u!4 &6621552336649173560
 Transform:
   m_ObjectHideFlags: 0

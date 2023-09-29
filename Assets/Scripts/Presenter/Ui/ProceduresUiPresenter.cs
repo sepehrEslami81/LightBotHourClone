@@ -9,13 +9,10 @@ namespace Presenter.Ui
         [SerializeField] private GameObject rootPanel;
         [SerializeField] private GameObject procedurePrefab;
 
-        private static ProceduresUiPresenter _instance;
         private List<ProcedurePanelUiPresenter> _procedures;
 
         private void Awake()
         {
-            _instance = this;
-
             if (rootPanel is null)
                 rootPanel = gameObject;
 
@@ -24,21 +21,15 @@ namespace Presenter.Ui
 
         private void OnDestroy()
         {
-            _instance = this;
             _procedures.Clear();
         }
-
-        public static void AddNewProcedure(ProcedureModel model)
-        {
-            _instance.CreateProcedurePanel(model);
-        }
-
+        
         public void SelectProcedureById(int index, bool isSelected)
         {
             _procedures[index].IsSelected = isSelected;
         }
         
-        private void CreateProcedurePanel(ProcedureModel model)
+        public void NewProcedurePanel(ProcedureModel model)
         {
             var procPanel = Instantiate(procedurePrefab, rootPanel.transform);
 
