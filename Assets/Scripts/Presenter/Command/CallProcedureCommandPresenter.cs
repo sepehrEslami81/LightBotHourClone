@@ -13,7 +13,6 @@ namespace Presenter.Command
 
         public override IEnumerator Execute()
         {
-            print("1");
             var proc = procedurePresenter.GetProcedureByIndex(procedureIndex);
             yield return proc.RunProcedure();
         }
