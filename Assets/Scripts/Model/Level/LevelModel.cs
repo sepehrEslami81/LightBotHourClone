@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using UnityEngine.Serialization;
+﻿using Model.Robot;
+using UnityEngine;
 
 namespace Model.Level
 {
@@ -7,7 +7,9 @@ namespace Model.Level
     public class LevelModel : ScriptableObject
     {
         [SerializeField] private int id;
+        [SerializeField] private RobotDirection startRobotDirection;
         [SerializeField] private CubeTileModel[] cubeTileModels;
+
 
         public int Id => id;
         public CubeTileModel[] CubeTileModels => cubeTileModels;

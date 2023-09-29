@@ -1,6 +1,4 @@
 ﻿using System;
-using Model.Robot;
-using Presenter.Cube;
 using UnityEngine;
 
 namespace Model.Level
@@ -10,7 +8,6 @@ namespace Model.Level
     {
         [SerializeField] private bool isLightTile;
         [SerializeField] private bool isStartPoint;
-        [SerializeField] private RobotDirection startRobotDirection;
         [SerializeField] private Position position;
         [SerializeField] private int height = 1;
 
