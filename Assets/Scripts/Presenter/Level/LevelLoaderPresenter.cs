@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using Model.Level;
 using Presenter.Procedure;
 using Presenter.Robot;
+using Presenter.Ui;
 using UnityEngine;
 
 namespace Presenter.Level
@@ -28,6 +30,12 @@ namespace Presenter.Level
             
             LoadTileMap();
             LoadProcedures();
+            LoadUiElements();
+        }
+
+        private void LoadUiElements()
+        {
+            CommandsPanelPresenter.LoadCommands(level.Commands.ToArray());
         }
 
         private void LoadTileMap()
