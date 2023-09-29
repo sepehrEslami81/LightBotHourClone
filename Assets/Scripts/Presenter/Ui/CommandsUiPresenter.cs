@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Presenter.Ui
 {
-    public class CommandsPanelPresenter : MonoBehaviour
+    public class CommandsUiPresenter : MonoBehaviour
     {
         [SerializeField] private GameObject panelRoot;
         [SerializeField] private GameObject commandButtonPrefab;
 
-        private static CommandsPanelPresenter _instance;
+        private static CommandsUiPresenter _instance;
 
         private void Awake()
         {

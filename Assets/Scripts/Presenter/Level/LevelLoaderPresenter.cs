@@ -35,7 +35,7 @@ namespace Presenter.Level
 
         private void LoadUiElements()
         {
-            CommandsPanelPresenter.LoadCommands(level.Commands.ToArray());
+            CommandsUiPresenter.LoadCommands(level.Commands.ToArray());
         }
 
         private void LoadTileMap()
