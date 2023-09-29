@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections;
 using Model;
+using Model.Level;
 using Model.Robot;
 using Presenter.Level;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Presenter.Robot
 {
@@ -30,17 +29,6 @@ namespace Presenter.Robot
             }
         }
 
-        public void ResetRobotPosition()
-        {
-            var tile = TileMapPresenter.StartTile;
-
-            var wp = tile.WorldPosition;
-            wp.y = _robotModel.RobotHeight + tile.Height;
-
-            _robotModel.Position = tile.Position;
-            _robotModel.RobotGameObject.transform.position = wp;
-        }
-
         public Position GetNextTilePosByDirection()
         {
             return _robotModel.Direction switch
@@ -53,6 +41,33 @@ namespace Presenter.Robot
                 // just for fix rider warning
                 _ => throw new ArgumentOutOfRangeException()
             };
+        }
+
+
+        public void FixPosition(Vector3 targetWorldPos, Position targetPos)
+        {
+            _robotModel.Position = targetPos;
+
+            var currentTile = TileMapPresenter.GetTileByPosition(targetPos);
+            
+            var y = CalculateYAxis(currentTile);
+            var worldPos = new Vector3(targetWorldPos.x, y, targetWorldPos.z);
+            _robotModel.RobotGameObject.transform.position = worldPos;
+
+            float CalculateYAxis(CubeTileModel model) => _robotModel.RobotHeight + model.Height;
+        }
+
+        public void FixRotation(Vector3 targetAngles, RobotDirection dir)
+        {
+            transform.eulerAngles = targetAngles;
+            _robotModel.Direction = CalculateCurrentDirection(dir);
+
+
+            RobotDirection CalculateCurrentDirection(RobotDirection rotedToDirection)
+            {
+                int directionNum = rotedToDirection == RobotDirection.Left ? 3 : 1;
+                return (RobotDirection)((int)(_robotModel.Direction + directionNum) % 4);
+            }
         }
 
         public IEnumerator Move(Position newPosition, Vector3 newWorldPosition, int tileHeight)
@@ -112,25 +127,6 @@ namespace Presenter.Robot
         {
             var lerp = Vector3.Lerp(a, b, t);
             _robotModel.RobotGameObject.transform.position = lerp;
-        }
-
-        private void FixPosition(Vector3 targetWorldPos, Position targetPos)
-        {
-            _robotModel.Position = targetPos;
-            _robotModel.RobotGameObject.transform.position = targetWorldPos;
-        }
-
-        private void FixRotation(Vector3 targetAngles, RobotDirection dir)
-        {
-            transform.eulerAngles = targetAngles;
-            _robotModel.Direction = CalculateCurrentDirection(dir);
-
-
-            RobotDirection CalculateCurrentDirection(RobotDirection rotedToDirection)
-            {
-                int directionNum = rotedToDirection == RobotDirection.Left ? 3 : 1;
-                return (RobotDirection)((int)(_robotModel.Direction + directionNum) % 4);
-            }
         }
     }
 }
