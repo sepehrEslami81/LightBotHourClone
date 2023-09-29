@@ -47,13 +47,13 @@ namespace Presenter.Level
                 LoadCubeTile(tileModel);
 
                 if (tileModel.IsStartPoint)
-                    SetRobotAtStartPosition();
+                    SetRobotAtStartPosition(tileModel);
             }
         }
 
-        private void SetRobotAtStartPosition()
+        private void SetRobotAtStartPosition(CubeTileModel tileModel)
         {
-            _robot.ResetRobotPosition();
+            _robot.FixPosition(tileModel.WorldPosition, tileModel.Position);
         }
 
         private void LoadCubeTile(CubeTileModel levelCubeTile)
