@@ -38,13 +38,15 @@ namespace Presenter.Level
             _instance._level.CubeTileModels.FirstOrDefault(p => p.Position == position);
 
 
-        internal void SetLevel(LevelModel levelModel) => _level = levelModel;
+        internal static void SetLevel(LevelModel levelModel) => _instance._level = levelModel;
 
-        internal void CreateLevel()
+        internal static void BuildMap() => _instance.CreateTiles();
+        
+        private void CreateTiles()
         {
             foreach (var tileModel in _level.CubeTileModels)
             {
-                LoadCubeTile(tileModel);
+                CreateCubeTileObject(tileModel);
 
                 if (tileModel.IsStartPoint)
                     SetRobotAtStartPosition(tileModel);
@@ -56,7 +58,7 @@ namespace Presenter.Level
             _robot.FixPosition(tileModel.WorldPosition, tileModel.Position);
         }
 
-        private void LoadCubeTile(CubeTileModel levelCubeTile)
+        private void CreateCubeTileObject(CubeTileModel levelCubeTile)
         {
             var instantiatedObject = CreateCubeTile(parent: transform);
             instantiatedObject.transform.localScale = CalcTileScale(levelCubeTile);

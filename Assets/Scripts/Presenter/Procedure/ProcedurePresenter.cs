@@ -1,43 +1,40 @@
 ﻿using System.Collections;
-using Presenter.Command;
+using System.Collections.Generic;
+using Model.Level;
 using UnityEngine;
 
 namespace Presenter.Procedure
 {
     public class ProcedurePresenter : MonoBehaviour
     {
-        [Range(1, 5)] [SerializeField] private int proceduresCount = 1;
-
-        private Procedure[] _procedures;
+        private List<Procedure> _procedures;
         private int _selectedProcedure = 0;
+        
+        private static ProcedurePresenter _instance;
 
-        private IEnumerator Start()
+        private void Awake()
         {
-            CreateProcedures(proceduresCount);
+            _instance = this;
             
-            var robot = GameObject.FindWithTag("Player");
-            var forwardCommand = robot.GetComponent<ForwardWalkCommandPresenter>();
-            var jumpCommand = robot.GetComponent<JumpCommandPresenter>();
-            var lightStateCommand = robot.GetComponent<ChangeLightStateCommandPresenter>();
-            var rotateLeftCommand = robot.GetComponent<RotateLeftCommandPresenter>();
-            var rotateRightCommand = robot.GetComponent<RotateRightCommandPresenter>();
-
-            _procedures[0].AddCommand(rotateLeftCommand);
-            _procedures[0].AddCommand(forwardCommand);
-
-
-            yield return new WaitForSeconds(1f);
-            StartCoroutine(RunProcedure());
+            _procedures = new List<Procedure>();
+            _selectedProcedure = 0;
         }
 
-        public void CreateProcedures(int count)
+        private void OnDestroy()
         {
-            _procedures = new Procedure[count];
-            for (var i = 0; i < _procedures.Length; i++)
-                _procedures[0] = new Procedure();
+            _instance = null;
+            _procedures.Clear();
         }
 
-        public IEnumerator RunProcedure()
+        public static void CreateProcedure(ProcedureModel model)
+        {
+            Debug.Log($"load {model.Name} procedure");
+            
+            var proc = new Procedure(model);
+            _instance._procedures.Add(proc);
+        }
+
+        private IEnumerator RunProcedure()
         {
             var selectedProc = GetSelectedProc();
             var commands = selectedProc.Commands;

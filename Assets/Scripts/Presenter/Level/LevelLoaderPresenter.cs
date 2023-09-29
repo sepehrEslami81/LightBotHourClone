@@ -1,5 +1,6 @@
 ﻿using System;
 using Model.Level;
+using Presenter.Procedure;
 using Presenter.Robot;
 using UnityEngine;
 
@@ -21,24 +22,26 @@ namespace Presenter.Level
             LoadLevel();
         }
 
-        internal void LoadLevel()
+        private void LoadLevel()
         {
-            var tileMapPresenter = GetTileMapPresenter();
+            Debug.Log($"load level {level.Id}");
             
-            tileMapPresenter.SetLevel(level); 
-            tileMapPresenter.CreateLevel();
+            LoadTileMap();
+            LoadProcedures();
         }
 
-
-        private TileMapPresenter GetTileMapPresenter()
+        private void LoadTileMap()
         {
-            var component = GameObject.FindObjectOfType<TileMapPresenter>();
-            if (component is null)
+            TileMapPresenter.SetLevel(level); 
+            TileMapPresenter.BuildMap();
+        }
+
+        private void LoadProcedures()
+        {
+            foreach (var procModel in level.Procedures)
             {
-                throw new NullReferenceException("failed to find Tile map presenter");
+                ProcedurePresenter.CreateProcedure(procModel);
             }
-            
-            return component;
         }
 
     }

@@ -1,4 +1,5 @@
-﻿using Model.Commands;
+﻿using System.Collections.Generic;
+using Model.Commands;
 using Model.Robot;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ namespace Model.Level
         [SerializeField] private RobotDirection startRobotDirection;
 
         [Header("Commands Settings")] [SerializeField]
-        private CommandName[] commands;
+        private CommandNames[] commands;
 
         [SerializeField] private ProcedureModel[] procedures = new[]
         {
@@ -27,5 +28,7 @@ namespace Model.Level
 
         public int Id => id;
         public CubeTileModel[] CubeTileModels => cubeTileModels;
+        public IEnumerable<CommandNames> Commands => commands;
+        public IEnumerable<ProcedureModel> Procedures => procedures;
     }
 }
