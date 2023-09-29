@@ -13,6 +13,8 @@ namespace Presenter.Command
 
         public IEnumerator Execute()
         {
+            yield return new WaitForSeconds(delayTime);
+
             var robotTile = TileMapPresenter.GetTileByPosition(robotModel.Position);
 
             if (robotTile == null)
@@ -38,8 +40,6 @@ namespace Presenter.Command
                 : CubeType.TurnedOffTile;
 
             presenter.ChangeTileStatus(type);
-
-            yield return new WaitForSeconds(delayTime);
         }
     }
 }
