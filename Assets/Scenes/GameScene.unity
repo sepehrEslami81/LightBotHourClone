@@ -523,6 +523,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8bf739eb1a84d948efe6523b47a10bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commands:
+  - {fileID: 1267378526}
+  - {fileID: 1267378525}
+  - {fileID: 1267378524}
+  - {fileID: 1267378523}
+  - {fileID: 1267378522}
 --- !u!4 &1267378521
 Transform:
   m_ObjectHideFlags: 0
