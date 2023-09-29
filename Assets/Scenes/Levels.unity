@@ -242,6 +242,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a40446e8975650e478567208845991df, type: 2}
   - {fileID: 11400000, guid: 8e6e55e3b93dbbd41b05f83b85727f24, type: 2}
   - {fileID: 11400000, guid: 62ebe6d4882946e4fbeebfd4170176a6, type: 2}
+  - {fileID: 11400000, guid: 779c3e4fa9d2deb4f82b940b83d30cb1, type: 2}
   levelCardPrefab: {fileID: 7635588911694917640, guid: cf750326764aead49b3c6d06890d49df, type: 3}
 --- !u!1 &632094958
 GameObject:
