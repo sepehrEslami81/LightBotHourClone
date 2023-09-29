@@ -14,8 +14,6 @@ namespace Presenter.Command
         
         public override IEnumerator Execute()
         {
-            Debug.Log("Exec: Execute jump");
-
             var nextPos = robotPresenter.GetNextTilePosByDirection();
             var tile = TileMapPresenter.GetTileByPosition(robotModel.Position + nextPos);
 

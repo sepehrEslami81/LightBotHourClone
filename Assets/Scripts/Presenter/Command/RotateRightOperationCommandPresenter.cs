@@ -11,7 +11,6 @@ namespace Presenter.Command
         
         public override IEnumerator Execute()
         {
-            Debug.Log("Exec: Rotate right");
             yield return robotPresenter.Rotate(RobotDirection.Right);
 
         }

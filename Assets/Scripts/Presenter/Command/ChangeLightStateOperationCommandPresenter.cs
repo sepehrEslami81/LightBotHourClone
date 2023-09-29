@@ -19,7 +19,7 @@ namespace Presenter.Command
 
             if (robotTile == null)
             {
-                Debug.LogError("Tile not found");
+                Debug.Log("Tile not found");
                 yield break; 
             }
 
