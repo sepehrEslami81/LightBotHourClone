@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 898539212529045745}
   - component: {fileID: 7660290815180432829}
+  - component: {fileID: 7821213601652901469}
   m_Layer: 5
   m_Name: Procedure
   m_TagString: Untagged
@@ -47,6 +48,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5112708405544559111}
   m_CullTransparentMesh: 1
+--- !u!114 &7821213601652901469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5112708405544559111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4edd95b0be0b4c2daf8f8a5a24ff6867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  procedureLabel: {fileID: 5616826937283284996}
+  commandsHolder: {fileID: 2179499715830649990}
+  commandButton: {fileID: 5261607318473101997, guid: 65fecfc0919db024489999aaf52fe4bb, type: 3}
+  normalColor: {r: 1, g: 1, b: 1, a: 0.39215687}
+  selectedColor: {r: 1, g: 0.91764706, b: 0.41960785, a: 0.39215687}
 --- !u!1 &5919354528870880342
 GameObject:
   m_ObjectHideFlags: 0
