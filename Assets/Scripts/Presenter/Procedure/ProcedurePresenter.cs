@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Model.Level;
+using Presenter.Command;
 using UnityEngine;
 
 namespace Presenter.Procedure
 {
     public class ProcedurePresenter : MonoBehaviour
     {
-        private List<Procedure> _procedures;
-        private int _selectedProcedure = 0;
+        [SerializeField] private List<OprationCommand> commands;
         
+        private int _selectedProcedure = 0;
+        private List<Procedure> _procedures;
+
         private static ProcedurePresenter _instance;
 
         private void Awake()
@@ -18,6 +21,7 @@ namespace Presenter.Procedure
             
             _procedures = new List<Procedure>();
             _selectedProcedure = 0;
+            
         }
 
         private void OnDestroy()
