@@ -90,18 +90,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0f70ec2f49e4623a174bc22c2a63c9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  procedureIndex: 0
+  commandIndexInProcedure: 0
   image: {fileID: 5261607318473101995}
   sprites:
-  - commandName: 1
-    iconSprite: {fileID: -1875491569, guid: b9059155ca57af84f85ec942f79cbd1a, type: 3}
   - commandName: 2
     iconSprite: {fileID: 2046911009, guid: b9059155ca57af84f85ec942f79cbd1a, type: 3}
-  - commandName: 3
+  - commandName: 1
     iconSprite: {fileID: 919756351, guid: b9059155ca57af84f85ec942f79cbd1a, type: 3}
-  - commandName: 4
+  - commandName: 3
     iconSprite: {fileID: 1502889226, guid: b9059155ca57af84f85ec942f79cbd1a, type: 3}
-  - commandName: 5
+  - commandName: 4
     iconSprite: {fileID: -1602256706, guid: b9059155ca57af84f85ec942f79cbd1a, type: 3}
+  - commandName: 5
+    iconSprite: {fileID: 1853021978, guid: b9059155ca57af84f85ec942f79cbd1a, type: 3}
+  - commandName: 0
+    iconSprite: {fileID: -1875491569, guid: b9059155ca57af84f85ec942f79cbd1a, type: 3}
 --- !u!114 &1459269552928624295
 MonoBehaviour:
   m_ObjectHideFlags: 0
