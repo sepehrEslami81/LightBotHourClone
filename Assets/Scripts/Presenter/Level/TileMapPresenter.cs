@@ -10,11 +10,16 @@ namespace Presenter.Level
 {
     public class TileMapPresenter : MonoBehaviour
     {
+        #region PRIVATE_FIELDS
+
         [SerializeField] private GameObject cubeTilePrefab;
 
-        private LevelModel _level;
         private RobotPresenter _robot;
         private static TileMapPresenter _instance;
+
+        #endregion
+
+        #region UNITY_METHODS
 
         private void Awake()
         {
@@ -27,70 +32,90 @@ namespace Presenter.Level
 
         private void OnDestroy()
         {
-            _level = null;
             _robot = null;
             _instance = null;
         }
 
+        #endregion
+
+        #region PUBLIC_METHODS
+
+        /// <summary>
+        /// Get tiles based on position
+        /// </summary>
+        /// <param name="position">coordinate of selected tile</param>
+        /// <returns>if position is wrong, returns null</returns>
         public static CubeTileModel GetTileByPosition(Position position) =>
-            _instance._level.CubeTileModels.FirstOrDefault(p => p.Position == position);
+            LevelPresenter.CurrentLevel.CubeTileModels.FirstOrDefault(p => p.Position == position);
 
 
+        /// <summary>
+        /// Turns off all tiles that can be turned on
+        /// </summary>
         public void ResetAllLightCubes()
         {
-            var lightCubeTileModels = _level.CubeTileModels.Where(c => c.IsLightTile);
+            var lightCubeTileModels = LevelPresenter.CurrentLevel.CubeTileModels.Where(c => c.IsLightTile);
             foreach (var lightCubeTileModel in lightCubeTileModels)
             {
                 lightCubeTileModel.CubeTilePresenter.ChangeTileStatus(CubeType.TurnedOffTile);
             }
         }
 
-        internal static void SetLevel(LevelModel levelModel) => _instance._level = levelModel;
+        #endregion
 
+
+        #region INTERNAL_METHODS
+
+        /// <summary>
+        /// Builds the tiles and prepares the stage
+        /// </summary>
         internal static void BuildMap()
         {
-            _instance.SetRobotDir();
             _instance.CreateTiles();
         }
 
-        private void SetRobotDir()
-        {
-            _robot.SetDefaultDirection(_level.StartRobotDirection);
-        }
-        
+        #endregion
+
+        #region PRIVATE_METHODS
+
+        /// <summary>
+        /// build cube tile map
+        /// </summary>
         private void CreateTiles()
         {
-            foreach (var tileModel in _level.CubeTileModels)
+            var currentLevelCubeTileModels = LevelPresenter.CurrentLevel.CubeTileModels;
+            foreach (var tileModel in currentLevelCubeTileModels)
             {
                 CreateCubeTileObject(tileModel);
 
+                // Places the robot on the starting tile
                 if (tileModel.IsStartPoint)
-                    SetRobotAtStartPosition(tileModel);
+                    _robot.ResetRobot();
             }
         }
 
-        private void SetRobotAtStartPosition(CubeTileModel startTile)
-        {
-            _robot.SetDefaultPos(startTile.Position);
-            _robot.ResetRobot();
-        }
-
+        /// <summary>
+        /// Creates the tile cube and adjusts its settings such as position, height and tile type
+        /// </summary>
+        /// <param name="levelCubeTile">cube tile data model</param>
         private void CreateCubeTileObject(CubeTileModel levelCubeTile)
         {
             var instantiatedObject = CreateCubeTile(parent: transform);
             instantiatedObject.transform.localScale = CalcTileScale(levelCubeTile);
             levelCubeTile.CubeTilePresenter = instantiatedObject.GetComponent<CubeTilePresenter>();
 
+            // If the tile can be turned on, it will configure it
             if (levelCubeTile.IsLightTile)
             {
                 SetTileAsLightCubeTile(instantiatedObject);
             }
 
 
-            // create scale v3 according to height value
+            // calculate scale v3 according to height value
             Vector3 CalcTileScale(CubeTileModel cubeTileData) => new Vector3(1, cubeTileData.Height, 1);
 
 
+            // Creates a tile object in the scene
             GameObject CreateCubeTile(Transform parent)
             {
                 var pos = CalculatedPosition(levelCubeTile.WorldPosition, levelCubeTile.Height);
@@ -99,11 +124,16 @@ namespace Presenter.Level
 
                 return go;
             }
-            
+
+            // calculate position according tile height
             Vector3 CalculatedPosition(Vector3 worldPos, int height) =>
                 new Vector3(worldPos.x, height / 2f, worldPos.z);
         }
 
+        /// <summary>
+        /// Turns the tile into a light tile
+        /// </summary>
+        /// <param name="instantiatedObject">tile game object</param>
         private void SetTileAsLightCubeTile(GameObject instantiatedObject)
         {
             instantiatedObject.tag = "LightCube";
@@ -116,9 +146,13 @@ namespace Presenter.Level
             {
                 Debug.LogError("failed to get CubeTile component from cube!");
             }
-
         }
 
+        /// <summary>
+        /// find robot object with "Player" tag
+        /// </summary>
+        /// <returns>robot GameObject</returns>
+        /// <exception cref="NullReferenceException">Nothing found with player tag</exception>
         private GameObject GetRobotObject()
         {
             var robotObject = GameObject.FindWithTag("Player");
@@ -130,17 +164,22 @@ namespace Presenter.Level
             return robotObject;
         }
 
+        /// <summary>
+        /// get robot presenter from roboto GameObject
+        /// </summary>
+        /// <param name="robotObject">robot GameObject</param>
+        /// <returns>if presenter doesnt load on object, then return null</returns>
         private RobotPresenter GetRobotPresenter(GameObject robotObject)
         {
             if (robotObject.TryGetComponent(out RobotPresenter presenter))
             {
                 return presenter;
             }
-            else
-            {
-                Debug.LogError("failed to load robot presenter.");
-                return null;
-            }
+
+            Debug.LogError("failed to load robot presenter.");
+            return null;
         }
+
+        #endregion
     }
 }

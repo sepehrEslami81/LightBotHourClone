@@ -17,6 +17,11 @@ namespace Presenter.Cube
 
         public CubeType Type { get; private set; } = CubeType.Tile;
         
+        
+        /// <summary>
+        /// Changing the color of the cube based on the type of tile
+        /// </summary>
+        /// <param name="type">type of cube tile</param>
         public void ChangeTileStatus(CubeType type)
         {
             switch (type)
@@ -33,16 +38,24 @@ namespace Presenter.Cube
             }
         }
 
+        /// <summary>
+        /// change color of material
+        /// </summary>
+        /// <param name="color">selected color</param>
         private void ChangeTileMaterial(Color color)
         {
             // we dont need renderer for normal tiles.
-            // so we get this component when need it.
+            // so we get this component when we call this method.
             if(_renderer == null)
                 LoadRendererComponent();
             
             _renderer.material.color = color;
         }
 
+        
+        /// <summary>
+        /// load object renderer and store in memory
+        /// </summary>
         private void LoadRendererComponent()
         {
             if (TryGetComponent(out Renderer component))

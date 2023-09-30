@@ -10,9 +10,7 @@ namespace Model.Robot
 
         public Position Position { get; set; }
         public float RobotHeight => robotHeight;
-        public Position StartPosition { get; set; }
         public Transform RobotGameObject => transform;
-        public RobotDirection StartDirection { get; set; }
         public Vector3 CurrentWorldPosition => transform.position;
         public RobotDirection Direction { get; set; } = RobotDirection.Forward;
         
