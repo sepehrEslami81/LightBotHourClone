@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Model.Level;
+using Presenter.Level;
+using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace Presenter.Ui
@@ -7,6 +9,7 @@ namespace Presenter.Ui
     {
         
         [SerializeField] private GameObject root;
+        
         private int _turnedOnLightCubes;
         
         public int CountOfLightCubes { get; set; }
@@ -23,6 +26,11 @@ namespace Presenter.Ui
         }
 
         public void HidePanel() => root.SetActive(false);
+
+        public void LoadNextLevel()
+        {
+            LevelLoaderPresenter.LoadLevelById(LevelLoaderPresenter.CurrentLevel.Id + 1);
+        }
         
         private void LevelCompleted()
         {

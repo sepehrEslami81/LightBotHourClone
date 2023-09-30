@@ -237,16 +237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7863f1b803a1424cbfe2020764fd3137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelModels:
-  - {fileID: 11400000, guid: d0807c1d2e799594d9766e5de3208f40, type: 2}
-  - {fileID: 11400000, guid: a40446e8975650e478567208845991df, type: 2}
-  - {fileID: 11400000, guid: 8e6e55e3b93dbbd41b05f83b85727f24, type: 2}
-  - {fileID: 11400000, guid: 62ebe6d4882946e4fbeebfd4170176a6, type: 2}
-  - {fileID: 11400000, guid: 779c3e4fa9d2deb4f82b940b83d30cb1, type: 2}
-  - {fileID: 11400000, guid: 11536bad4372bcf4e9310f08a0970337, type: 2}
-  - {fileID: 11400000, guid: 47cc05000486221478a609a9de1a6616, type: 2}
-  - {fileID: 11400000, guid: fb2a39aed21174d46a628a2a2f029431, type: 2}
-  - {fileID: 11400000, guid: 4988820cfa9d1634d839c957f1939b5e, type: 2}
   levelCardPrefab: {fileID: 7635588911694917640, guid: cf750326764aead49b3c6d06890d49df, type: 3}
 --- !u!1 &632094958
 GameObject:
@@ -544,3 +534,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e38ecb3b81f4a48881622fdaf43079a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levels:
+  - {fileID: 11400000, guid: d0807c1d2e799594d9766e5de3208f40, type: 2}
+  - {fileID: 11400000, guid: a40446e8975650e478567208845991df, type: 2}
+  - {fileID: 11400000, guid: 8e6e55e3b93dbbd41b05f83b85727f24, type: 2}
+  - {fileID: 11400000, guid: 62ebe6d4882946e4fbeebfd4170176a6, type: 2}
+  - {fileID: 11400000, guid: 779c3e4fa9d2deb4f82b940b83d30cb1, type: 2}
+  - {fileID: 11400000, guid: 11536bad4372bcf4e9310f08a0970337, type: 2}
+  - {fileID: 11400000, guid: 47cc05000486221478a609a9de1a6616, type: 2}
+  - {fileID: 11400000, guid: fb2a39aed21174d46a628a2a2f029431, type: 2}
+  - {fileID: 11400000, guid: 4988820cfa9d1634d839c957f1939b5e, type: 2}

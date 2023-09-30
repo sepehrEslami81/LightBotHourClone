@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Linq;
 using Model.Level;
 using Presenter.Procedure;
@@ -10,8 +11,15 @@ namespace Presenter.Level
 {
     public class LevelLoaderPresenter : MonoBehaviour
     {
+        [SerializeField] private LevelModel[] levels;
+        
         private static LevelLoaderPresenter _instance;
+        private LevelModel _currentLevel;
 
+        public static LevelModel[] LevelModels => _instance.levels;
+        public static LevelModel CurrentLevel => _instance._currentLevel;
+        
+        
         private void Awake()
         {
             _instance = this;
@@ -19,9 +27,16 @@ namespace Presenter.Level
             DontDestroyOnLoad(this);
         }
 
-        internal static void LoadLevel(LevelModel model)
+        internal static void LoadLevelById(int id)
         {
-            _instance.StartLoadLevel(model);
+            var level = _instance.GetLevelById(id);
+            if (level is null)
+            {
+                Debug.LogWarning($"level {id} not found!");
+                return;
+            }
+            
+            _instance.StartLoadLevel(level);
         }
 
         private void StartLoadLevel(LevelModel model)
@@ -37,9 +52,12 @@ namespace Presenter.Level
             {
                 yield return new WaitForFixedUpdate();
             }
-            
+
+            _currentLevel = model;
             BuildLevel(model);
         }
+
+        private LevelModel GetLevelById(int i) => levels.FirstOrDefault(l => l.Id == i);
 
         private void BuildLevel(LevelModel level)
         {
@@ -50,20 +68,26 @@ namespace Presenter.Level
             LoadUiElements(level);
             SetCountOfLightCubes(level);
         }
-
+        
         private void SetCountOfLightCubes(LevelModel level)
         {
-            var completeUiPresenter = FindObjectOfType<CompleteLevelUiPresenter>();
-            if (completeUiPresenter is null)
-            {
-                Debug.LogError("failed to get level complete presenter");
-                return;
-            }
+            var completeUiPresenter = GetCompleteUiPresenter();
 
             completeUiPresenter.HidePanel();
             completeUiPresenter.CountOfLightCubes = GetCountOfLightCubes();
 
             int GetCountOfLightCubes() => level.CubeTileModels.Count(c => c.IsLightTile);
+        }
+
+        private CompleteLevelUiPresenter GetCompleteUiPresenter()
+        {
+            var completeUiPresenter = FindObjectOfType<CompleteLevelUiPresenter>();
+            if (completeUiPresenter is null)
+            {
+                throw new NullReferenceException("failed to get complete ui presenter");
+            }
+
+            return completeUiPresenter;
         }
 
         private void LoadUiElements(LevelModel level)
