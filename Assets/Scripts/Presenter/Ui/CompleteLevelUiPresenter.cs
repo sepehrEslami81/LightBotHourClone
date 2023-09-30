@@ -9,17 +9,19 @@ namespace Presenter.Ui
     {
         
         [SerializeField] private GameObject root;
+        
+        /// <summary>
+        /// change panel activate status
+        /// </summary>
+        /// <param name="s"></param>
+        public void ChangePanelActiveStatus(bool s) => root.SetActive(s);
 
-        public void HidePanel() => root.SetActive(false);
-
+        /// <summary>
+        /// Button click listener: load next level
+        /// </summary>
         public void LoadNextLevel()
         {
             LevelPresenter.LoadLevelById(LevelPresenter.CurrentLevel.Id + 1);
-        }
-        
-        public void LevelCompleted()
-        {
-            root.SetActive(true);
         }
     }
 }

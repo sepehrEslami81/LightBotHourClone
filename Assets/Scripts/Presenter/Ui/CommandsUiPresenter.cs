@@ -1,6 +1,4 @@
-﻿using System;
-using Model.Commands;
-using Presenter.Procedure;
+﻿using Model.Commands;
 using UnityEngine;
 
 namespace Presenter.Ui
@@ -20,11 +18,19 @@ namespace Presenter.Ui
                 rootPanel = gameObject;
         }
 
+        /// <summary>
+        /// load level commands to commands list panel
+        /// </summary>
+        /// <param name="commands"></param>
         public static void LoadCommands(CommandName[] commands)
         {
             _instance.CreateCommandButtons(commands);
         }
 
+        /// <summary>
+        /// load level commands to commands list panel
+        /// </summary>
+        /// <param name="commands"></param>
         private void CreateCommandButtons(CommandName[] commands)
         {
             // remove all children for safety
@@ -41,6 +47,9 @@ namespace Presenter.Ui
         }
 
 
+        /// <summary>
+        /// remove all children of commands list
+        /// </summary>
         private void RemoveChildren()
         {
             for (int i = 0; i < rootPanel.transform.childCount; i++)

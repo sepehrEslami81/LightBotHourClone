@@ -25,11 +25,21 @@ namespace Presenter.Ui
             _procedures.Clear();
         }
         
+        /// <summary>
+        /// select procedure ui panel by id
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="isSelected"></param>
         public void SelectProcedureById(int index, bool isSelected)
         {
             _procedures[index].IsSelected = isSelected;
         }
         
+        /// <summary>
+        /// create new procedure ui panel by id
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="index"></param>
         public void NewProcedurePanel(ProcedureModel model, int index)
         {
             var procPanel = Instantiate(procedurePrefab, rootPanel.transform);
@@ -48,11 +58,22 @@ namespace Presenter.Ui
             }
         }
 
+        /// <summary>
+        /// add new command to select ui panel by id
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="commandName"></param>
         public void AddCommandToPanel(int index, CommandName commandName)
         {
             _procedures[index].AddCommand(commandName);
         }
 
+        
+        /// <summary>
+        /// remove command from ui panel by id
+        /// </summary>
+        /// <param name="procIndex"></param>
+        /// <param name="commandIndex"></param>
         public void RemoveCommandByIndex(int procIndex, int commandIndex)
         {
             _procedures[procIndex].RemoveCommand(commandIndex);

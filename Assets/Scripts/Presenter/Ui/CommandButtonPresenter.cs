@@ -23,6 +23,14 @@ namespace Presenter.Ui
         [SerializeField] private Image image;
         [SerializeField] private List<CommandSpriteModel> sprites;
 
+        
+        /// <summary>
+        /// create command button object by prefab and set as child of selected parent
+        /// </summary>
+        /// <param name="prefab"></param>
+        /// <param name="parent"></param>
+        /// <returns>presenter of command button</returns>
+        /// <exception cref="NullReferenceException"></exception>
         public static CommandButtonPresenter CreateCommandButton(GameObject prefab, Transform parent)
         {
             var btn = Instantiate(prefab, parent);
@@ -34,18 +42,33 @@ namespace Presenter.Ui
             throw new NullReferenceException("failed to get command button presenter.");
         }
 
+        /// <summary>
+        /// update button icon and set click event listener
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="buttonPlace"></param>
         public void UpdateButtonUi(CommandName command, CommandButtonPlace buttonPlace)
         {
             SetIcon(command);
             MakeButton(command, buttonPlace);
         }
 
+        
+        /// <summary>
+        /// set button icon according by command name
+        /// </summary>
+        /// <param name="command"></param>
         private void SetIcon(CommandName command)
         {
             var sprite = sprites.First(p => p.CommandName == command);
             image.sprite = sprite.IconSprite;
         }
 
+        /// <summary>
+        /// set click event listener by button place
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="commandButtonPlace"></param>
         private void MakeButton(CommandName command, CommandButtonPlace commandButtonPlace)
         {
             if (TryGetComponent(out Button btnComponent))
@@ -63,11 +86,19 @@ namespace Presenter.Ui
             }
         }
 
+        /// <summary>
+        /// add command to current procedure
+        /// </summary>
+        /// <param name="command"></param>
         private void AddCommandToSelectedProc(CommandName command)
         {
             ProcedurePresenter.AddNewCommand(command);
         }
 
+        
+        /// <summary>
+        /// remove current command from procedure
+        /// </summary>
         private void RemoveCommandFromSelectedProc()
         {
             ProcedurePresenter.SelectProcedureById(procedureIndex);

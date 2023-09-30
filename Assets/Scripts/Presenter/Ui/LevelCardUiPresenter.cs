@@ -11,6 +11,13 @@ namespace Presenter.Ui
         
         private LevelModel _levelModel;
 
+        
+        /// <summary>
+        /// create level card object with prefab
+        /// </summary>
+        /// <param name="prefab"></param>
+        /// <param name="parent"></param>
+        /// <param name="levelModel"></param>
         public static void CreateNewLevelCard(GameObject prefab, Transform parent, LevelModel levelModel)
         {
             var instantiate = Instantiate(prefab, parent);
@@ -21,6 +28,9 @@ namespace Presenter.Ui
         }
 
 
+        /// <summary>
+        /// Button click listener: load level
+        /// </summary>
         public void ClickEventListener()
         {
             LevelPresenter.LoadLevelById(_levelModel.Id);

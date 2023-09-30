@@ -141,7 +141,7 @@ namespace Presenter.Level
         private void ResetCompletePanel()
         {
             var completeUiPresenter = GetCompleteUiPresenter();
-            completeUiPresenter.HidePanel();
+            completeUiPresenter.ChangePanelActiveStatus(false);
         }
 
         /// <summary>
@@ -182,7 +182,7 @@ namespace Presenter.Level
         private void LevelCompleted()
         {
             var completeUi = GetCompleteUiPresenter();
-            completeUi.LevelCompleted();
+            completeUi.ChangePanelActiveStatus(true);
         }
 
         #endregion

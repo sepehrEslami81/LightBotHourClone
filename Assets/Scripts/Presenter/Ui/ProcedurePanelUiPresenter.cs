@@ -25,6 +25,9 @@ namespace Presenter.Ui
         private Image _procHolderImage;
         private Dictionary<int, CommandButtonPresenter> _buttons;
 
+        /// <summary>
+        /// panel selection status and update panel ui when change selection status
+        /// </summary>
         public bool IsSelected
         {
             get => _isSelected;
@@ -49,21 +52,36 @@ namespace Presenter.Ui
             _buttons = new Dictionary<int, CommandButtonPresenter>();
         }
 
+        /// <summary>
+        /// set label
+        /// </summary>
+        /// <param name="label"></param>
         internal void SetProcedureLabel(string label)
         {
-            procedureLabel.text = label;
+            procedureLabel.text = label.ToUpper();
         }
 
+        /// <summary>
+        /// set current procedure index
+        /// </summary>
+        /// <param name="index"></param>
         internal void SetProcedureIndex(int index)
         {
             _procIndex = index;
         }
 
+        /// <summary>
+        /// Button click listener: select this procedure
+        /// </summary>
         public void SelectProcedure()
         {
             ProcedurePresenter.SelectProcedureById(_procIndex);
         }
 
+        /// <summary>
+        /// add command to ui panel
+        /// </summary>
+        /// <param name="command"></param>
         internal void AddCommand(CommandName command)
         {
             var btn = CreateButton();
@@ -79,6 +97,11 @@ namespace Presenter.Ui
                 CommandButtonPresenter.CreateCommandButton(commandButtonPrefab, commandsHolder);
         }
 
+        
+        /// <summary>
+        /// remove command from panel ui
+        /// </summary>
+        /// <param name="index"></param>
         internal void RemoveCommand(int index)
         {
             var btn = _buttons[index].gameObject;
