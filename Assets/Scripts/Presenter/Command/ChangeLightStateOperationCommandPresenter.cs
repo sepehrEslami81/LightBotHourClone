@@ -15,6 +15,10 @@ namespace Presenter.Command
         [Header("settings")] [Range(0, 3f)] [SerializeField]
         private float delayTime = .2f;
 
+        /// <summary>
+        /// Used to light tiles that can be lit. If the robot is placed on this tile, it can turn on that tile
+        /// </summary>
+        /// <returns></returns>
         public override IEnumerator Execute()
         {
             yield return new WaitForSeconds(delayTime);
