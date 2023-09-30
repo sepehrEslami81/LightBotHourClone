@@ -33,9 +33,9 @@ namespace Presenter.Robot
         {
             return _robotModel.Direction switch
             {
-                RobotDirection.Forward => new Position(0, 1),
+                RobotDirection.Forward => new Position(0, -1),
                 RobotDirection.Left => new Position(1, 0),
-                RobotDirection.Backward => new Position(0, -1),
+                RobotDirection.Backward => new Position(0, 1),
                 RobotDirection.Right => new Position(-1, 0),
 
                 // just for fix rider warning
