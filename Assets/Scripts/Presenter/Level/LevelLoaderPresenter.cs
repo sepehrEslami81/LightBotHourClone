@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using Model.Level;
 using Presenter.Procedure;
@@ -39,11 +38,10 @@ namespace Presenter.Level
                 yield return new WaitForFixedUpdate();
             }
             
-            yield return new WaitForSeconds(.1f);
-            LoadLevelByModel(model);
+            BuildLevel(model);
         }
 
-        private void LoadLevelByModel(LevelModel level)
+        private void BuildLevel(LevelModel level)
         {
             Debug.Log($"load level {level.Id}");
 

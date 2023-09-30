@@ -2,6 +2,7 @@
 using Presenter.Procedure;
 using Presenter.Robot;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Presenter.Ui
@@ -29,6 +30,11 @@ namespace Presenter.Ui
                 ResetAndRun();
             else
                 Stop();
+        }
+
+        public void ShowLevelsMenu()
+        {
+            SceneManager.LoadSceneAsync("LevelsMenu");
         }
 
         private void ResetAndRun()
