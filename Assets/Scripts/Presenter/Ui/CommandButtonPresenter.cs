@@ -34,19 +34,19 @@ namespace Presenter.Ui
             throw new NullReferenceException("failed to get command button presenter.");
         }
 
-        public void UpdateButtonUi(CommandNames command, CommandButtonPlace buttonPlace)
+        public void UpdateButtonUi(CommandName command, CommandButtonPlace buttonPlace)
         {
             SetIcon(command);
             MakeButton(command, buttonPlace);
         }
 
-        private void SetIcon(CommandNames command)
+        private void SetIcon(CommandName command)
         {
             var sprite = sprites.First(p => p.CommandName == command);
             image.sprite = sprite.IconSprite;
         }
 
-        private void MakeButton(CommandNames command, CommandButtonPlace commandButtonPlace)
+        private void MakeButton(CommandName command, CommandButtonPlace commandButtonPlace)
         {
             if (TryGetComponent(out Button btnComponent))
             {
@@ -63,7 +63,7 @@ namespace Presenter.Ui
             }
         }
 
-        private void AddCommandToSelectedProc(CommandNames command)
+        private void AddCommandToSelectedProc(CommandName command)
         {
             ProcedurePresenter.AddNewCommand(command);
         }

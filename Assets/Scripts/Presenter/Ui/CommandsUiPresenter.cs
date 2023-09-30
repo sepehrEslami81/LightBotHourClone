@@ -20,12 +20,12 @@ namespace Presenter.Ui
                 rootPanel = gameObject;
         }
 
-        public static void LoadCommands(CommandNames[] commands)
+        public static void LoadCommands(CommandName[] commands)
         {
             _instance.CreateCommandButtons(commands);
         }
 
-        private void CreateCommandButtons(CommandNames[] commands)
+        private void CreateCommandButtons(CommandName[] commands)
         {
             // remove all children for safety
             RemoveChildren();

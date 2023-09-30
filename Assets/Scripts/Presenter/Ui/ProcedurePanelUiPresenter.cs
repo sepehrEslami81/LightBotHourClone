@@ -64,7 +64,7 @@ namespace Presenter.Ui
             ProcedurePresenter.SelectProcedureById(_procIndex);
         }
 
-        internal void AddCommand(CommandNames command)
+        internal void AddCommand(CommandName command)
         {
             var btn = CreateButton();
             btn.UpdateButtonUi(command, CommandButtonPlace.InProcedure);

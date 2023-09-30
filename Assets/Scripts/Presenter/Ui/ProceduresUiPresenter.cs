@@ -48,7 +48,7 @@ namespace Presenter.Ui
             }
         }
 
-        public void AddCommandToPanel(int index, CommandNames commandName)
+        public void AddCommandToPanel(int index, CommandName commandName)
         {
             _procedures[index].AddCommand(commandName);
         }

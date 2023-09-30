@@ -15,7 +15,7 @@ namespace Model.Level
         [SerializeField] private RobotDirection startRobotDirection;
 
         [Header("Commands Settings")] [SerializeField]
-        private CommandNames[] commands;
+        private CommandName[] commands;
 
         [SerializeField] private ProcedureModel[] procedures = new[]
         {
@@ -29,7 +29,7 @@ namespace Model.Level
 
         public int Id => id;
         public CubeTileModel[] CubeTileModels => cubeTileModels;
-        public IEnumerable<CommandNames> Commands => commands;
+        public IEnumerable<CommandName> Commands => commands;
         public List<ProcedureModel> Procedures => procedures.ToList();
         public RobotDirection StartRobotDirection => startRobotDirection;
     }

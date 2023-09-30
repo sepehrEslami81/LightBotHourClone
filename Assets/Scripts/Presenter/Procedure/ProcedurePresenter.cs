@@ -47,7 +47,7 @@ namespace Presenter.Procedure
             _instance.proceduresUiPresenter.SelectProcedureById(index, isSelected);
         }
 
-        public static bool AddNewCommand(CommandNames commandName) => _instance.AddCommand(commandName);
+        public static bool AddNewCommand(CommandName commandName) => _instance.AddCommand(commandName);
 
         public static void RemoveCommand(int procIndex, int commandIndex) =>
             _instance.RemoveCommandByIndex(procIndex, commandIndex);
@@ -65,7 +65,7 @@ namespace Presenter.Procedure
         public Procedure GetProcedureByIndex(int index) => _procedures[index];
         
 
-        private OperationCommand GetCommandByName(CommandNames commandName) =>
+        private OperationCommand GetCommandByName(CommandName commandName) =>
             commands.First(c => c.CommandName == commandName);
         
         
@@ -81,7 +81,7 @@ namespace Presenter.Procedure
         }
 
 
-        private bool AddCommand(CommandNames commandName)
+        private bool AddCommand(CommandName commandName)
         {
             var command = GetCommandByName(commandName);
             var selectedProc = GetSelectedProc();
