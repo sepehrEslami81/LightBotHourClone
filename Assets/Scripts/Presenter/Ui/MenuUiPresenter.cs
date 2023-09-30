@@ -16,7 +16,7 @@ namespace Presenter.Ui
 
         private void LoadLevelCards()
         {
-            var levels = LevelLoaderPresenter.LevelModels.OrderBy(l => l.Id);
+            var levels = LevelPresenter.LevelModels.OrderBy(l => l.Id);
             foreach (var levelModel in levels)
             {
                 LevelCardUiPresenter.CreateNewLevelCard(levelCardPrefab, transform, levelModel);

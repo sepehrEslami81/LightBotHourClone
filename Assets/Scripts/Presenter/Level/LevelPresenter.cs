@@ -9,11 +9,11 @@ using UnityEngine.SceneManagement;
 
 namespace Presenter.Level
 {
-    public class LevelLoaderPresenter : MonoBehaviour
+    public class LevelPresenter : MonoBehaviour
     {
         [SerializeField] private LevelModel[] levels;
         
-        private static LevelLoaderPresenter _instance;
+        private static LevelPresenter _instance;
         private LevelModel _currentLevel;
 
         public static LevelModel[] LevelModels => _instance.levels;

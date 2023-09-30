@@ -29,7 +29,7 @@ namespace Presenter.Ui
 
         public void LoadNextLevel()
         {
-            LevelLoaderPresenter.LoadLevelById(LevelLoaderPresenter.CurrentLevel.Id + 1);
+            LevelPresenter.LoadLevelById(LevelPresenter.CurrentLevel.Id + 1);
         }
         
         private void LevelCompleted()

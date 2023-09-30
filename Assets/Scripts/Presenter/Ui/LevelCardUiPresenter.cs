@@ -23,7 +23,7 @@ namespace Presenter.Ui
 
         public void ClickEventListener()
         {
-            LevelLoaderPresenter.LoadLevelById(_levelModel.Id);
+            LevelPresenter.LoadLevelById(_levelModel.Id);
         }
     }
 }
