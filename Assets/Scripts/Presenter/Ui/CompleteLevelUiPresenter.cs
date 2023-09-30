@@ -9,21 +9,6 @@ namespace Presenter.Ui
     {
         
         [SerializeField] private GameObject root;
-        
-        private int _turnedOnLightCubes;
-        
-        public int CountOfLightCubes { get; set; }
-
-        public int CountOfTurnedOnLightCubes
-        {
-            get => _turnedOnLightCubes;
-            set
-            {
-                _turnedOnLightCubes = value;
-                if (CountOfLightCubes == _turnedOnLightCubes)
-                    LevelCompleted();
-            }
-        }
 
         public void HidePanel() => root.SetActive(false);
 
@@ -32,7 +17,7 @@ namespace Presenter.Ui
             LevelPresenter.LoadLevelById(LevelPresenter.CurrentLevel.Id + 1);
         }
         
-        private void LevelCompleted()
+        public void LevelCompleted()
         {
             root.SetActive(true);
         }

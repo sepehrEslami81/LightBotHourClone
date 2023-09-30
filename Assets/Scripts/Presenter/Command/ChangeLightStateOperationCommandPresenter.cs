@@ -41,12 +41,20 @@ namespace Presenter.Command
                 ? CubeType.TurnedOnTile
                 : CubeType.TurnedOffTile;
 
+            ChangeCountOfTurnedOnLights(type);
             robotTile.CubeTilePresenter.ChangeTileStatus(type);
+        }
 
+        /// <summary>
+        /// Changing the number of lit tiles
+        /// </summary>
+        /// <param name="type">current cube light type</param>
+        private void ChangeCountOfTurnedOnLights(CubeType type)
+        {
             if (type == CubeType.TurnedOnTile)
-                levelUiPresenter.CountOfTurnedOnLightCubes++;
+                LevelPresenter.CountOfTurnedOnLightCubes++;
             else
-                levelUiPresenter.CountOfTurnedOnLightCubes--;
+                LevelPresenter.CountOfTurnedOnLightCubes--;
         }
     }
 }

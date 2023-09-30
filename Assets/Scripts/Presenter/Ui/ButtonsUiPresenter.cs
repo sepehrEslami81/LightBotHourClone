@@ -49,7 +49,8 @@ namespace Presenter.Ui
 
         private void ResetLightCubes()
         {
-            levelUiPresenter.CountOfTurnedOnLightCubes = 0;
+            LevelPresenter.CountOfTurnedOnLightCubes = 0;
+            
             levelUiPresenter.HidePanel();
             tileMapPresenter.ResetAllLightCubes();
         }

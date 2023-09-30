@@ -13,13 +13,26 @@ namespace Presenter.Level
     {
         [SerializeField] private LevelModel[] levels;
         
+        private int _turnedOnLightCubes;
         private static LevelPresenter _instance;
+        
         private LevelModel _currentLevel;
 
         public static LevelModel[] LevelModels => _instance.levels;
         public static LevelModel CurrentLevel => _instance._currentLevel;
         
         
+        public static int CountOfTurnedOnLightCubes
+        {
+            get => _instance._turnedOnLightCubes;
+            set
+            {
+                _instance._turnedOnLightCubes = value;
+                if (_instance.GetCountOfLightCubes() == _instance._turnedOnLightCubes)
+                    _instance.LevelCompleted();
+            }
+        }
+
         private void Awake()
         {
             _instance = this;
@@ -66,18 +79,24 @@ namespace Presenter.Level
             LoadTileMap(level);
             LoadProcedures(level);
             LoadUiElements(level);
-            SetCountOfLightCubes(level);
+            ResetCompletePanel();
+            ResetTurnedOnTiles();
         }
         
-        private void SetCountOfLightCubes(LevelModel level)
+        private void ResetCompletePanel()
         {
             var completeUiPresenter = GetCompleteUiPresenter();
-
             completeUiPresenter.HidePanel();
-            completeUiPresenter.CountOfLightCubes = GetCountOfLightCubes();
 
-            int GetCountOfLightCubes() => level.CubeTileModels.Count(c => c.IsLightTile);
         }
+
+        private void ResetTurnedOnTiles()
+        {
+            _turnedOnLightCubes = 0;
+        }
+        
+        private int GetCountOfLightCubes() => _currentLevel.CubeTileModels.Count(c => c.IsLightTile);
+
 
         private CompleteLevelUiPresenter GetCompleteUiPresenter()
         {
@@ -110,6 +129,12 @@ namespace Presenter.Level
             }
 
             ProcedurePresenter.SelectProcedureById(0, true);
+        }
+        
+        private void LevelCompleted()
+        {
+            var completeUi = GetCompleteUiPresenter();
+            completeUi.LevelCompleted();
         }
     }
 }
