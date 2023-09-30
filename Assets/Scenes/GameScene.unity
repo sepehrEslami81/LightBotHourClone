@@ -805,7 +805,7 @@ MonoBehaviour:
   commandName: 4
   robotModel: {fileID: 6621552338611026779}
   levelUiPresenter: {fileID: 1898569397}
-  delayTime: 0.1
+  delayTime: 0
 --- !u!114 &1267378523
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -39,6 +39,7 @@ namespace Presenter.Level
                 yield return new WaitForFixedUpdate();
             }
             
+            yield return new WaitForSeconds(.1f);
             LoadLevelByModel(model);
         }
 
