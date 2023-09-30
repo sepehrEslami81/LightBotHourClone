@@ -29,7 +29,7 @@ namespace Presenter.Command
                     (currentRobotY - tile.Height > 0) // check can jump from up to down
                 )
                 {
-                    yield return robotPresenter.Move(tile.Position, tile.WorldPosition, tile.Height);
+                    yield return robotPresenter.Move(tile);
                 }
                 else
                 {

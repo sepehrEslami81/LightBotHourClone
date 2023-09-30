@@ -33,7 +33,7 @@ namespace Presenter.Command
                 yield break;
             }
 
-            yield return robotPresenter.Move(tile.Position, tile.WorldPosition, tile.Height);
+            yield return robotPresenter.Move(tile);
         }
     }
 }
