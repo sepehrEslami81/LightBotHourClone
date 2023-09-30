@@ -28,8 +28,8 @@ namespace Model.Level
 
 
         public int Id => id;
-        public CubeTileModel[] CubeTileModels => cubeTileModels;
         public IEnumerable<CommandName> Commands => commands;
+        public CubeTileModel[] CubeTileModels => cubeTileModels;
         public List<ProcedureModel> Procedures => procedures.ToList();
         public RobotDirection StartRobotDirection => startRobotDirection;
     }
