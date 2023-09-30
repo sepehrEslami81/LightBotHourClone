@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace Presenter.Ui
 {
+    
+    /// <summary>
+    /// This class is responsible for managing the levels menu
+    /// </summary>
     public class MenuUiPresenter : MonoBehaviour
     {
         [SerializeField] private GameObject levelCardPrefab;

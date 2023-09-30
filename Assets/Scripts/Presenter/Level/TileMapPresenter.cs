@@ -8,6 +8,9 @@ using UnityEngine;
 
 namespace Presenter.Level
 {
+    /// <summary>
+    /// This class is responsible for managing the map of tiles
+    /// </summary>
     public class TileMapPresenter : MonoBehaviour
     {
         #region PRIVATE_FIELDS

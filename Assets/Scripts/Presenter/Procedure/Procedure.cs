@@ -6,6 +6,9 @@ using Presenter.Command;
 
 namespace Presenter.Procedure
 {
+    /// <summary>
+    /// This class is responsible for managing and maintaining procedure commands.
+    /// </summary>
     public class Procedure
     {
         private readonly ProcedureModel _model;

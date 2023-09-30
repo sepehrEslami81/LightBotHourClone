@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Presenter.Command
 {
+    /// <summary>
+    /// Executes commands inside a procedure
+    /// </summary>
     public class CallProcedureCommandPresenter : OperationCommand
     {
         [SerializeField] private int procedureIndex = 1; // Index 0 is used for the main procedure

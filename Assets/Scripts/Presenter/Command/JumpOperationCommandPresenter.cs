@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace Presenter.Command
 {
+    /// <summary>
+    /// it used to jump
+    /// </summary>
     public class JumpOperationCommandPresenter : OperationCommand
     {
         [SerializeField] private RobotModel robotModel;

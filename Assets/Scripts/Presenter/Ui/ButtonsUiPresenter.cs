@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 namespace Presenter.Ui
 {
+    /// <summary>
+    /// This class is responsible for managing stage management buttons such as execution, exit, etc
+    /// </summary>
     public class ButtonsUiPresenter : MonoBehaviour
     {
         [Header("Script references")]

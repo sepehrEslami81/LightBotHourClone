@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Model.Level
 {
+    /// <summary>
+    /// A model to store the information of each procedure
+    /// </summary>
     [Serializable]
     public class ProcedureModel
     {

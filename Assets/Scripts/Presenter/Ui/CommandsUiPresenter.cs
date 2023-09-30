@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Presenter.Ui
 {
+    /// <summary>
+    /// This class is responsible for managing the command list
+    /// </summary>
     public class CommandsUiPresenter : MonoBehaviour
     {
         [SerializeField] private GameObject rootPanel;

@@ -9,6 +9,10 @@ using UnityEngine.SceneManagement;
 
 namespace Presenter.Level
 {
+    /// <summary>
+    /// This class is responsible for level management. It can load the level, build its map,
+    /// load its commands and decide to finish the stage.
+    /// </summary>
     public class LevelPresenter : MonoBehaviour
     {
         #region PRIVATE_FIELDS
@@ -18,7 +22,7 @@ namespace Presenter.Level
         private int _turnedOnLightCubes;
         private LevelModel _currentLevel;
         private static LevelPresenter _instance;
-        
+
         #endregion
 
         #region PUBLIC_PROPS
@@ -43,10 +47,12 @@ namespace Presenter.Level
         #endregion
 
         #region PRIVATE_PROBS
+
         /// <summary>
         /// Calculate the number of tiles that can be lit (IsLightTile == true)
         /// </summary>
         private int CountOfLightCubes => _currentLevel.CubeTileModels.Count(c => c.IsLightTile);
+
         #endregion
 
         #region UNITY_METHODS

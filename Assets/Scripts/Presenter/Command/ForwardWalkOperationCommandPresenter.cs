@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace Presenter.Command
 {
+    /// <summary>
+    /// it used to move forward
+    /// </summary>
     public class ForwardWalkOperationCommandPresenter : OperationCommand
     {
         [SerializeField] private RobotModel robotModel;

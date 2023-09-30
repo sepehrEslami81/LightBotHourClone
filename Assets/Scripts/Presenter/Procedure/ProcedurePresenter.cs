@@ -9,6 +9,10 @@ using UnityEngine;
 
 namespace Presenter.Procedure
 {
+    /// <summary>
+    /// This class is responsible for maintaining and managing all procedures.
+    /// It also has the task of executing or stopping the main procedure
+    /// </summary>
     public class ProcedurePresenter : MonoBehaviour
     {
         #region PRIVATE_FIELDS

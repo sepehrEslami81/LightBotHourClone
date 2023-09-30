@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 namespace Presenter.Ui
 {
+    
+    /// <summary>
+    /// This class is responsible for managing the button to enter the level
+    /// </summary>
     public class LevelCardUiPresenter : MonoBehaviour
     {
         [SerializeField] private Text label;

@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Presenter.Command
 {
+    /// <summary>
+    /// An abstract class for creating commands. You can design new commands by inheriting from this class
+    /// </summary>
     public abstract class OperationCommand : MonoBehaviour
     {
         [SerializeField] private CommandName commandName;

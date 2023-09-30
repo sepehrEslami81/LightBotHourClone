@@ -7,6 +7,11 @@ using UnityEngine.UI;
 
 namespace Presenter.Ui
 {
+    
+    /// <summary>
+    /// This class is responsible for managing the procedure panel.
+    /// such as selecting, adding or removing commands and etc.
+    /// </summary>
     public class ProcedurePanelUiPresenter : MonoBehaviour
     {
         [SerializeField] private Text procedureLabel;

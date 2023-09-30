@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Presenter.Command
 {
+    /// <summary>
+    /// Used to turn right
+    /// </summary>
     public class RotateRightOperationCommandPresenter : OperationCommand
     {
         [SerializeField] private RobotPresenter robotPresenter;

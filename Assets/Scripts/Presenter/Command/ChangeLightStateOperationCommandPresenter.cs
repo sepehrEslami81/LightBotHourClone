@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace Presenter.Command
 {
+    /// <summary>
+    ///  Used to light tiles that can be lit
+    /// </summary>
     public class ChangeLightStateOperationCommandPresenter : OperationCommand
     {
         [SerializeField] private RobotModel robotModel;

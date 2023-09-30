@@ -2,6 +2,9 @@
 
 namespace Presenter.Cube
 {
+    /// <summary>
+    /// Specifies the type of tile
+    /// </summary>
     public enum CubeType
     {
         Tile,
@@ -9,6 +12,9 @@ namespace Presenter.Cube
         TurnedOffTile
     }
     
+    /// <summary>
+    /// Used to manage each tile. We can use this class to change the state of the tile
+    /// </summary>
     public class CubeTilePresenter : MonoBehaviour
     {
         private Renderer _renderer;

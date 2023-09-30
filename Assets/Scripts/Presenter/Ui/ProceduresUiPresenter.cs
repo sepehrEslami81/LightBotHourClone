@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Presenter.Ui
 {
+    /// <summary>
+    /// This class is responsible for managing procedure panels.
+    /// </summary>
     public class ProceduresUiPresenter : MonoBehaviour
     {
         [SerializeField] private GameObject rootPanel;

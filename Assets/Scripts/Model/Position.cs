@@ -3,6 +3,9 @@ using JetBrains.Annotations;
 
 namespace Model
 {
+    /// <summary>
+    /// A model to store the coordinates of the tiles
+    /// </summary>
     [Serializable]
     public class Position
     {

@@ -1,10 +1,11 @@
-﻿using Model.Level;
-using Presenter.Level;
+﻿using Presenter.Level;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Presenter.Ui
 {
+    /// <summary>
+    /// This class is responsible for managing the level completion menu
+    /// </summary>
     public class CompleteLevelUiPresenter : MonoBehaviour
     {
         

@@ -9,6 +9,10 @@ using UnityEngine;
 
 namespace Presenter.Robot
 {
+    
+    /// <summary>
+    /// This class is responsible for managing and executing movements on the robot
+    /// </summary>
     public class RobotPresenter : MonoBehaviour
     {
         #region PRIVATE_FIELDS

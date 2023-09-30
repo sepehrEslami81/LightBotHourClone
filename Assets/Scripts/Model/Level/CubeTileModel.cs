@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Model.Level
 {
+    /// <summary>
+    /// A model to store the information of each tile
+    /// </summary>
     [Serializable]
     public class CubeTileModel
     {

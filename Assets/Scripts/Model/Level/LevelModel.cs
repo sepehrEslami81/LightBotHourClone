@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace Model.Level
 {
+    /// <summary>
+    /// A model to store the information of each level. This class is defined as scriptableObject
+    /// </summary>
     [CreateAssetMenu(fileName = "New Level", menuName = "Levels/Create New Level", order = 0)]
     public class LevelModel : ScriptableObject
     {

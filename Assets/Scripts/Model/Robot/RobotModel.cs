@@ -2,8 +2,9 @@
 
 namespace Model.Robot
 {
-    public enum RobotDirection { Forward = 0, Right, Backward, Left  }
-    
+    /// <summary>
+    /// A model for storing robot information
+    /// </summary>
     public class RobotModel : MonoBehaviour
     {
         [SerializeField] private float robotHeight = .5f;

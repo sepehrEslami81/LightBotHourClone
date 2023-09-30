@@ -15,6 +15,9 @@ namespace Presenter.Ui
         InProcedure
     }
 
+    /// <summary>
+    /// This class is responsible for managing the command button in the procedures panel and command list
+    /// </summary>
     public class CommandButtonPresenter : MonoBehaviour
     {
         [HideInInspector] public int procedureIndex;

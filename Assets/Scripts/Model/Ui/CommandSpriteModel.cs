@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Model.Ui
 {
+    /// <summary>
+    /// A model to save the command sprite to change the command button sprite
+    /// </summary>
     [Serializable]
     public class CommandSpriteModel
     {
