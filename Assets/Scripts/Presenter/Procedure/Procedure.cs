@@ -16,7 +16,9 @@ namespace Presenter.Procedure
 
         private int _lastGeneratedId;
 
-        private IEnumerable<OperationCommand> Commands => _commands.Select(c => c.Value);
+        private OperationCommand[] Commands => _commands
+            .OrderBy(c=>c.Key)
+            .Select(c => c.Value).ToArray();
 
         public Procedure(ProcedureModel model)
         {
