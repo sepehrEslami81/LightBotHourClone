@@ -36,13 +36,9 @@ namespace Presenter.Level
 
             while (!loadingData.isDone)
             {
-                print("loading");
                 yield return new WaitForFixedUpdate();
             }
-
-            print("loaded successfully.");
             
-            yield return new WaitForSeconds(.3f);
             LoadLevelByModel(model);
         }
 
